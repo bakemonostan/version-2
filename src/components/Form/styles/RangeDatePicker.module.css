@@ -1,0 +1,38 @@
+.day {
+  &[data-selected="true"] {
+    background-color: var(--mantine-color-yellow-3);
+  }
+  &[data-in-range] {
+    background-color: var(--mantine-color-yellow-0);
+  }
+  &[data-first-in-range] {
+    background-color: var(--mantine-color-yellow-2);
+  }
+  &[data-last-in-range] {
+    background-color: var(--mantine-color-yellow-2);
+  }
+}
+
+.mantine-DatePickerInput-wrapper {
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+.mantine-DatePickerInput-input {
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+.mantine-DatePickerInput-section {
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+.mantine-DatePickerInput-root {
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
