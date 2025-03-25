@@ -4,6 +4,7 @@ import { Carousel, CarouselSlide } from "@mantine/carousel";
 import mainCarouselClasses from "../../_styles/Review.module.css";
 import { Avatar, Card, CardSection, Skeleton } from "@mantine/core";
 import StarIcon from "@/components/icons/StarIcon";
+import { ChevronDownIcon } from "lucide-react";
 
 export function Reviews() {
   const sm = useMediaQuery("(min-width: 320px)");
@@ -56,9 +57,10 @@ export function Reviews() {
                         <span className="body-3 font-semibold pb-[1.5px]">
                           John Doe
                         </span>
-                        <span className="flex items-center gap-1">
-                          <StarIcon className="w-[13px] h-[12.77px]" />
-                          <span>3.8</span>/<span>5</span>
+                        <span className="flex items-center">
+                          <StarIcon className="w-[13px] h-[12.77px] pl-0.5" />
+                          <span className="body-2 font-bold">3.8</span>/
+                          <span className="body-2 font-semibold">5</span>
                         </span>
                       </p>
                       <p className="body-4 font-light flex gap-1 items-center">
@@ -77,7 +79,12 @@ export function Reviews() {
                   </p>
                 </div>
                 <div className="pb-6">
-                  <p>Read more</p>
+                  <p className="body-3 font-semibold underline flex gap-1">
+                    Read more{" "}
+                    <span>
+                      <ChevronDownIcon className="size-3.5 mt-0.5" />
+                    </span>
+                  </p>
                 </div>
 
                 <div className="pb-6">
@@ -102,8 +109,8 @@ export function Reviews() {
                     ))}
                   </Carousel>
                 </div>
-                <p className="body-3 text-black/75">
-                  Reviewed by Maurice _ Aug 2024
+                <p className="body-3 text-black/75 pb-3.5">
+                  Reviewed by Maurice - Aug 2024
                 </p>
               </div>
             </CardSection>
