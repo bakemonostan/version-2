@@ -30,8 +30,8 @@ export function Reviews() {
     <Carousel
       type="container"
       align="center"
-      slideSize={lg ? "33.333333%" : md ? "50%" : sm ? "100%" : "100%"}
-      slideGap="md"
+      slideSize={lg ? "336px" : md ? "50%" : sm ? "100%" : "100%"}
+      slideGap="lg"
       containScroll="trimSnaps"
       slidesToScroll={lg ? 3 : md ? 2 : 1}
       classNames={{
