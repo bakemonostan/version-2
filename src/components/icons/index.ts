@@ -28,7 +28,6 @@ import AirCraftIcon from "./AirCraftIcon";
 import CaravanIcon from "./CaravanIcon";
 import CarIcon from "./CarIcon";
 import BookIcon from "./BookIcon";
-import BookingsIconVue from "./BookingsIconVue";
 import TwoWheelerIcon from "./TwoWheelerIcon";
 import WhyRentCardIcon from "./WhyRentCardIcon";
 import TickCircleIcon from "./TickCircleIcon";
@@ -77,7 +76,6 @@ export {
   WarningIcon,
   WishlistIcon,
   WorryFreeIcon,
-  BookingsIconVue,
   TwoWheelerIcon,
   WhyRentCardIcon,
   TickCircleIcon,

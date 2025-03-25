@@ -5,14 +5,11 @@ import SignInForm from "./SignInForm";
 import SignUpForm from "./SignUpForm";
 import VerifyToken from "./VerifyToken";
 import { useAuthStore } from "@/store/authStore";
-import { useRouter } from "next/navigation";
 
 export default function SignIn() {
   const { currentCard, headerText, resetCards } = useAuthStore();
-  const router = useRouter();
   const reset = () => {
     resetCards();
-    router.push(window.location.pathname);
   };
 
   return (

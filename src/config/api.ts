@@ -1,5 +1,6 @@
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from "axios";
 import { getCookie, deleteCookie } from "cookies-next/client";
+import { toast } from "sonner";
 
 export interface AxiosErrorResponse extends AxiosRequestConfig {
   error: string;
@@ -17,18 +18,16 @@ const api = axios.create({
   withCredentials: false,
 });
 
-
 api.interceptors.request.use(
   (config) => {
-    const token = getCookie("token");
-    if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
+    const kpk_token = getCookie("kpk_token");
+    if (kpk_token) {
+      config.headers.Authorization = `Bearer ${kpk_token}`;
     }
     return config;
   },
   (error) => Promise.reject(error)
 );
-
 
 api.interceptors.response.use(
   (response: AxiosResponse) => response,
@@ -36,14 +35,20 @@ api.interceptors.response.use(
     let errorMessage = "An unknown error occurred";
     if (error.response) {
       if (error.response.status === 401) {
-        deleteCookie("token");
-        window.location.href = "/";
+        deleteCookie('kpk_token')
+        toast.error(error.response.data.message, {
+          description: "Please log in 😊",
+        });
+        // window.location.href = "/";
       }
       errorMessage = error.response.data.message;
     } else if (error.request) {
       errorMessage = "No response received from server";
     } else {
       errorMessage = error.message;
+      toast.error("Error", {
+        description: error.message,
+      });
     }
     return Promise.reject(new Error(errorMessage));
   }

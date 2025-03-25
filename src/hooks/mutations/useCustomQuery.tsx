@@ -11,7 +11,7 @@ export function useCustomQuery<T>(
   })
 
   return {
-    isLoading: query.isLoading,
+    isLoading: query.isPending,
     isError: query.isError,
     data: query.data,
     error: query.error

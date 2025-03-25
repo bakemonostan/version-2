@@ -5,7 +5,7 @@ import { ReviewsTabs } from "./ReviewsTabs";
 
 export default function ReviewSection() {
   return (
-    <section className="flex-1 flex-center bg-gradient-to-r from-[#AD75E2]/10 to-[#FFCB4E]/15  py-32">
+    <section className="flex-1 flex-center bg-gradient-to-r from-[#AD75E2]/10 to-[#FFCB4E]/15  py-[120px]">
       <Shell>
         <p className="heading-3 text-center pb-16">
           Real Experiences from Kaparki Users

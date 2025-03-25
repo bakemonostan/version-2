@@ -8,7 +8,7 @@ import Link from "next/link";
 
 export default function ListToday() {
   return (
-    <section className="py-16">
+    <section className="py-[92px]">
       <Shell className="bg-landing-bg rounded-4xl lg:p-16">
         <div className="grid md:grid-cols-2 gap-8 items-center ">
           <div className=" space-y-6">

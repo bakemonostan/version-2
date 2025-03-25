@@ -1,5 +1,5 @@
- "use client";
- import { useMediaQuery, useMounted } from "@mantine/hooks";
+"use client";
+import { useMediaQuery, useMounted } from "@mantine/hooks";
 import { Carousel, CarouselSlide } from "@mantine/carousel";
 import mainCarouselClasses from "../../_styles/Review.module.css";
 import { Avatar, Card, CardSection, Skeleton } from "@mantine/core";
@@ -12,16 +12,23 @@ export function Reviews() {
   const mounted = useMounted();
   return !mounted ? (
     <div className="flex gap-4">
-      <Skeleton h={327.71} w={350} />
-      <Skeleton h={327.71} w={350} />
-      <Skeleton h={327.71} w={350} />
+      <Skeleton
+        h={327.71}
+        w={350}
+      />
+      <Skeleton
+        h={327.71}
+        w={350}
+      />
+      <Skeleton
+        h={327.71}
+        w={350}
+      />
     </div>
   ) : (
     <Carousel
-      withIndicators
       type="container"
       align="center"
-      draggable={false}
       slideSize={lg ? "33.333333%" : md ? "50%" : sm ? "100%" : "100%"}
       slideGap="md"
       containScroll="trimSnaps"
@@ -30,50 +37,62 @@ export function Reviews() {
         controls: mainCarouselClasses.controls,
         control: mainCarouselClasses.control,
         viewport: mainCarouselClasses.viewport,
-      }}
-    >
+      }}>
       {Array.from({ length: 7 }).map((_, index) => (
-        <CarouselSlide key={index}>
-          <Card className="bg-white border" radius={"lg"} h={327.71}>
+        <CarouselSlide
+          key={index}
+          draggable={false}>
+          <Card
+            className="bg-white border"
+            radius={"lg"}
+            h={327.71}>
             <CardSection className="p-4">
-              <div className="flex flex-col gap-4">
-                <div className="flex gap-3">
-                  <Avatar />
-                  {/*  */}
-                  <div className="flex flex-col gap-1">
-                    <p>John Doe</p>
-                    <p>
-                      4x guest on Kaparki <span></span> Joined Sept 2023
-                    </p>
-                  </div>
-                  <div className="flex items-center gap-1">
-                    <StarIcon />
-                    <span>3.8/5</span>
+              <div className="flex flex-col">
+                <div className="pb-6">
+                  <div className="flex">
+                    <Avatar size={32} />
+                    <div className="w-full pl-2">
+                      <p className="flex justify-between items-center">
+                        <span className="body-3 font-semibold pb-[1.5px]">
+                          John Doe
+                        </span>
+                        <span className="flex items-center gap-1">
+                          <StarIcon className="w-[13px] h-[12.77px]" />
+                          <span>3.8</span>/<span>5</span>
+                        </span>
+                      </p>
+                      <p className="body-4 font-light flex gap-1 items-center">
+                        4x guest on Kaparki{" "}
+                        <span className="size-1 bg-black/60 block rounded-full"></span>{" "}
+                        Joined Sept 2023
+                      </p>
+                    </div>
                   </div>
                 </div>
 
                 <div>
-                  <p>
+                  <p className="body-2 font-normal pb-4">
                     Hallo Daar, pasgeleden hebben wij deze fantastische camper
                     gekocht. We zijn van plan er vele mooie reiz...
                   </p>
                 </div>
-                <div>
+                <div className="pb-6">
                   <p>Read more</p>
                 </div>
 
-                <div>
+                <div className="pb-6">
                   <Carousel
                     controlSize={14}
-                    dragFree
                     align="start"
-                    type="container"
                     slideSize="100px"
                     height={55}
-                    slidesToScroll={3}
-                  >
+                    draggable={false}
+                    containScroll="trimSnaps"
+                    slidesToScroll={3}>
                     {Array.from({ length: 10 }).map((_, index) => (
-                      <CarouselSlide key={index}>
+                      <CarouselSlide
+                        key={index}
+                        draggable={false}>
                         <img
                           src="/images/car-image-hero.jpg"
                           alt="Review 1"
@@ -83,6 +102,9 @@ export function Reviews() {
                     ))}
                   </Carousel>
                 </div>
+                <p className="body-3 text-black/75">
+                  Reviewed by Maurice _ Aug 2024
+                </p>
               </div>
             </CardSection>
           </Card>

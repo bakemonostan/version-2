@@ -31,23 +31,27 @@ export default function CarListing() {
       {route !== "/how-kaparki-works" && (
         <Separator className="hidden lg:block  container mx-auto bg-black/10" />
       )}
-      <div className="py-8 lg:py-24">
+      <div className="py-8 lg:py-[92px]">
         <div className="relative grid gap-[10rem] mx-auto lg:grid-cols-2 pb-8">
           <div>
-            <h3 className="text-2xl font-bold heading-3">
+            <h3 className="text-2xl font-bold heading-3 pb-4">
               Find the perfect car to conquer the great outdoors
             </h3>
-            <p className="body-1-medium text-black/80">
+            <p className="body-1-medium text-black/80 pb-4">
               Go prepared in a rugged 4x4 to take on winter roads with ease, or
               a camper van to take you to the trees.
             </p>
           </div>
         </div>
-        <div className="mx-auto space-y-10">
-          <div className="flex gap-2 overflow-scroll overflow-y-hidden pb-4">
+        <div className="mx-auto space-y-2">
+          <div className="flex gap-2 overflow-scroll overflow-y-hidden">
             {isLoading
               ? Array.from({ length: 6 }).map((_, index) => (
-                  <Skeleton key={index} h={50} w={120} />
+                  <Skeleton
+                    key={index}
+                    h={50}
+                    w={120}
+                  />
                 ))
               : categoryNames?.map((tab) => (
                   <GradientButton
@@ -64,13 +68,11 @@ export default function CarListing() {
           {!subcategoriesLoading ? (
             <Link
               href=""
-              className="flex w-full gap-5 overflow-x-auto cursor-grab sm:p-3 md:grid md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 md:flex-wrap"
-            >
+              className="flex w-full gap-5 overflow-x-auto cursor-grab sm:p-3 md:grid md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 md:flex-wrap">
               {subCategoryFields?.map((car) => (
                 <figure
                   key={car.id}
-                  className="relative flex-shrink-0 transition duration-200 rounded-lg cursor-pointer hover:scale-105"
-                >
+                  className="relative flex-shrink-0 transition duration-200 rounded-lg cursor-pointer hover:scale-105">
                   <div className="grid grid-rows-[1fr_auto]">
                     <img
                       src={
@@ -89,10 +91,15 @@ export default function CarListing() {
             </Link>
           ) : (
             <div>
-              <Skeleton h={200} w={200} />
+              <Skeleton
+                h={200}
+                w={200}
+              />
             </div>
           )}
-          <Button variant="cta" className="w-max">
+          <Button
+            variant="cta"
+            className="w-max">
             <Link href="/results">Browse all</Link>
           </Button>
         </div>

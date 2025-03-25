@@ -14,7 +14,7 @@ import { ApiResponse, handleGet } from "@/utils/general";
 
 //lisitng
 export async function getDashboardData() {
-  return api.get<ApiResponse<ViewDashBoard>>("/dashboard");
+  return handleGet<ViewDashBoard>("/dashboard");
 }
 
 export async function getUserListingTableData() {

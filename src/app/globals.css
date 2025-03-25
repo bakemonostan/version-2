@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "tailwind-preset-mantine";
 /* @config "../../tailwind.config.js"; */
 @plugin "tailwindcss-animate";
 
@@ -148,6 +149,9 @@
   .wrapper {
     @apply max-w-7xl lg:mx-auto p-5 md:px-10 w-full;
   }
+  .heading-l {
+    @apply text-[1.875rem] leading-[2.4375rem] font-bold;
+  }
   .heading-hero-1 {
     @apply text-hero-1 leading-hero-1 font-black;
   }
@@ -159,6 +163,9 @@
   }
   .heading-4 {
     @apply text-heading-4 leading-[1.25rem] font-bold;
+  }
+  .heading-6 {
+    @apply text-[14px] leading-0;
   }
   .button-text {
     @apply text-button font-semibold leading-button;
@@ -180,6 +187,17 @@
   }
   .body-1-medium {
     @apply text-body-1 leading-[28.8px] font-normal;
+  }
+  .body-2 {
+    @apply leading-6 text-[1rem];
+  }
+
+  .body-3 {
+    @apply text-body-3 leading-body-3;
+  }
+
+  .body-4 {
+    @apply text-[12px];
   }
 
   .flex-center {
@@ -286,8 +304,14 @@
   font-weight: 500 !important;
 }
 
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
 
-
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
 
 .hide::-webkit-scrollbar {
   display: none;
@@ -320,7 +344,6 @@
   background-color: #8f9dab;
   border-radius: 6px;
 }
-
 
 .multi-stop-gradient {
   background: linear-gradient(

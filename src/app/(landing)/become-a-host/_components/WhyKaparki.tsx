@@ -27,7 +27,7 @@ export default function WhyKaparki() {
             );
           })}
         </div>
-        <div className="text-center max-w-[674px] mx-auto pt-16 pb-32">
+        <div className="text-center max-w-[674px] mx-auto pt-16 pb-[120px]">
           <p className="body-1-light pb-6">
             Take control of your rental, set your own terms, and connect with
             verified renters. Get started in just a few clicks!

@@ -44,11 +44,11 @@ export default function VerifyToken() {
       { code: data.code, email: email! },
       {
         onSuccess: (data) => {
-          setCookie("token", data.token);
+          setCookie("kpk_token", data.token);
           toast.success("Login successful", {
             description: "Redirecting...",
           });
-          router.push("/");
+          router.push("/dashboard/overview");
           setCards("sign-in");
         },
         onError: (error) => {
@@ -66,13 +66,21 @@ export default function VerifyToken() {
       </p>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="flex flex-col gap-6"
-      >
-        <PinInputComponent name="code" control={form.control} />
-        <Button type="submit" variant="ghost" className="w-full rounded-full">
+        className="flex flex-col gap-6">
+        <PinInputComponent
+          name="code"
+          control={form.control}
+        />
+        <Button
+          type="submit"
+          variant="ghost"
+          className="w-full rounded-full">
           <p className="button-text">
             {isPending ? (
-              <Loader color="yellow.4" size="sm" />
+              <Loader
+                color="yellow.4"
+                size="sm"
+              />
             ) : (
               "Verify and login"
             )}

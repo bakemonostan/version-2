@@ -4,7 +4,7 @@ import { Card, CardSection } from "@mantine/core";
 
 export default function WhyRent() {
   return (
-    <section className="py-32">
+    <section className="py-[120px]">
       <Shell>
         <div className="grid md:grid-cols-2 gap-8 items-center ">
           <div className="pb-16">
@@ -16,7 +16,9 @@ export default function WhyRent() {
           {WHY_RENT_DATA.map((card, index) => {
             const Icon = card.icon;
             return (
-              <Card key={index} bg="yellow-light.4">
+              <Card
+                key={index}
+                bg="yellow-light.4">
                 <CardSection className="text-center p-8 space-y-6">
                   <Icon className="mx-auto" />
                   <h4 className="heading-4 pb-4">{card.title}</h4>
