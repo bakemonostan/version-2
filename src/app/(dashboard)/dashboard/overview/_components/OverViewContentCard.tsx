@@ -7,11 +7,17 @@ interface dashboardContentCardProps
   extends React.HtmlHTMLAttributes<HTMLDivElement> {
   isCentered?: boolean;
   withIcon?: boolean;
+  title?: string;
+  value?: string;
+  icon?: React.ReactNode;
 }
 
 export default function OverViewContentCard({
   isCentered,
   withIcon,
+  title = "Title",
+  value = "4",
+  icon,
   ...rest
 }: dashboardContentCardProps) {
   return (
@@ -22,13 +28,13 @@ export default function OverViewContentCard({
         <div className={cn("p-4 ", isCentered && "flex flex-col items-center")}>
           {withIcon && (
             <div className="pb-1">
-              <BookingHistoryIcon />
+              {icon || <BookingHistoryIcon />}
             </div>
           )}
           <p className="text-black/80 text-[0.875rem] pb-1 font-medium">
-            Title
+            {title}
           </p>
-          <p className="font-bold text-[1.375rem] text-black/80">4</p>
+          <p className="font-bold text-[1.375rem] text-black/80">{value}</p>
         </div>
       </CardSection>
     </Card>

@@ -1,6 +1,6 @@
 import { useQueryClient, InvalidateQueryFilters } from "@tanstack/react-query";
 
-const useRefetchQuery = () => {
+const useInvalidateQuery = () => {
   const queryClient = useQueryClient();
 
   const refetchQuery = (queryKey: InvalidateQueryFilters) => {
@@ -10,4 +10,4 @@ const useRefetchQuery = () => {
   return { refetchQuery };
 };
 
-export default useRefetchQuery;
+export default useInvalidateQuery;

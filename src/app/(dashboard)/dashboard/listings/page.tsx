@@ -1,15 +1,34 @@
-import React from 'react';
+"use client";
+
+import React from "react";
+import DashboardShell from "../_components/DashboardShell";
+import OverviewSideCard from "../overview/_components/OverviewSideCard";
+import { DataTable } from "@/components/ui/data-table";
+import { columns } from "./_components/listingsTableColums";
+import { useQuery } from "@tanstack/react-query";
+import { getUserListingTableData } from "@/services/dashboard";
 
 export default function ListingsPage() {
+  const { data: TableData, isLoading } = useQuery({
+    queryKey: ['Vehicle listing table data'],
+    queryFn: getUserListingTableData,
+  });
+
   return (
-    <div className="container mx-auto py-8">
-      <h1 className="text-3xl font-bold mb-6">My Listings</h1>
-      <div className="grid gap-6">
-        <div className="p-6 bg-white rounded-lg shadow">
-          <h2 className="text-xl font-semibold mb-4">Your Property Listings</h2>
-          <p>View and manage all your property listings here.</p>
-        </div>
+    <DashboardShell card={<OverviewSideCard />}>
+      <div className="p-4">
+        <h1 className="text-2xl font-bold mb-6">Vehicle Listings</h1>
+        {isLoading ? (
+          <div className="flex justify-center items-center h-40">
+            <p>Loading...</p>
+          </div>
+        ) : (
+          <DataTable
+            columns={columns}
+            data={TableData || []}
+          />
+        )}
       </div>
-    </div>
+    </DashboardShell>
   );
-} 
+}

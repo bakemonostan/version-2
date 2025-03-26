@@ -1,7 +1,9 @@
 "use client";
 
-import { ColorSchemeScript, MantineProvider as MantineProviderBase } from "@mantine/core";
-import { ModalsProvider } from "@mantine/modals";
+import {
+  ColorSchemeScript,
+  MantineProvider as MantineProviderBase,
+} from "@mantine/core";
 import { theme } from "../theme/mantine";
 
 export default function MantineProvider({
@@ -12,7 +14,7 @@ export default function MantineProvider({
   return (
     <MantineProviderBase theme={theme}>
       <ColorSchemeScript />
-      <ModalsProvider>{children}</ModalsProvider>
+      {children}
     </MantineProviderBase>
   );
 }

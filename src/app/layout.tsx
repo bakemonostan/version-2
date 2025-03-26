@@ -9,7 +9,8 @@ import QueryProvider from "@/providers/QueryProvider";
 import { Loader, mantineHtmlProps } from "@mantine/core";
 import { Toaster } from "sonner";
 import { CircleCheck, InfoIcon, CircleAlert, CircleX } from "lucide-react";
-
+import { ModalProvider } from "@/providers/ModalContext";
+import { ModalRegistry } from "@/providers/ModalRegistry";
 const outfit = Outfit({
   subsets: ["latin"],
   variable: "--font-outfit",
@@ -28,34 +29,44 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" {...mantineHtmlProps}>
+    <html
+      lang="en"
+      {...mantineHtmlProps}>
       <body className={`${outfit.variable} antialiased`}>
         <MantaineProvider>
           <QueryProvider>
-            {children}
-            <Toaster
-              duration={3000}
-              position="top-center"
-              richColors
-              closeButton
-              toastOptions={{
-                classNames: {
-                  toast: "toast",
-                  default: "toast-default",
-                  icon: "toast-icon",
-                  description: "toast-description",
-                  title: "toast-title",
-                  content: "toast-content",
-                },
-              }}
-              icons={{
-                success: <CircleCheck size={18} />,
-                info: <InfoIcon size={18} />,
-                warning: <CircleAlert size={18} />,
-                error: <CircleX size={18} />,
-                loading: <Loader color="yellow.4" size="sm" />,
-              }}
-            />
+            <ModalProvider>
+              {children}
+              <Toaster
+                duration={3000}
+                position="top-center"
+                richColors
+                closeButton
+                toastOptions={{
+                  classNames: {
+                    toast: "toast",
+                    default: "toast-default",
+                    icon: "toast-icon",
+                    description: "toast-description",
+                    title: "toast-title",
+                    content: "toast-content",
+                  },
+                }}
+                icons={{
+                  success: <CircleCheck size={18} />,
+                  info: <InfoIcon size={18} />,
+                  warning: <CircleAlert size={18} />,
+                  error: <CircleX size={18} />,
+                  loading: (
+                    <Loader
+                      color="yellow.4"
+                      size="sm"
+                    />
+                  ),
+                }}
+              />
+              <ModalRegistry />
+            </ModalProvider>
           </QueryProvider>
         </MantaineProvider>
       </body>

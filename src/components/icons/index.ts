@@ -16,6 +16,8 @@ import LogoIcon from "./LogoIcon";
 import RequestsIcon from "./RequestsIcon";
 import RocketShipIcon from "./RocketShipIcon";
 import UnapprovedIcon from "./UnapprovedIcon";
+import PausedIcon from "./PausedIcon";
+import PendingEyesIcon from "./PendingEyesIcon";
 import WarningIcon from "./WarningIcon";
 import WishlistIcon from "./WishlistIcon";
 import WorryFreeIcon from "./WorryFreeIcon";
@@ -80,4 +82,6 @@ export {
   WhyRentCardIcon,
   TickCircleIcon,
   WishListIcon,
+  PausedIcon,
+  PendingEyesIcon,
 };

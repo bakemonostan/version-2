@@ -6,10 +6,6 @@ export function middleware(request: NextRequest) {
   const isAuthRoute = pathname.startsWith("/auth");
   const isDashboardRoute = pathname.startsWith("/dashboard");
   
-  if (pathname.includes("dashboard")) {
-    console.log("Dashboard route detected:", pathname);
-  }
-
   const token = request.cookies.get("kpk_token")?.value;
 
   if (isAuthRoute && token) {
@@ -24,7 +20,7 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/auth/:path*", "/dashboard/:path*"],
+  // matcher: ["/auth/:path*", "/dashboard/:path*"],
 };
 
 
