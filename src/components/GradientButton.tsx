@@ -21,15 +21,14 @@ export default function GradientButton({
       onClick={onClick}
       data-state={isActive ? "active" : "inactive"}
       disabled={isMutating > 0}
-      className={`gradient-border cursor-pointer disabled:cursor-not-allowed  ${
-        isMutating ? "opacity-50" : ""
-      }`}
-      {...props}
-    >
+      className={`
+        relative border-0 rounded-full overflow-hidden
+        ${isActive ? 'before:absolute before:inset-0 before:bg-gradient-to-r before:from-[#FFCB4E] before:to-[#AD75E2] before:rounded-full' : 'b border-border border-[1px]'}
+        ${isMutating ? "opacity-50" : ""}`}
+      {...props}>
       <span
-        className="gradient-border-inner bg-background px-6 py-2 flex-center"
-        style={{ background: innerBg }}
-      >
+        className={`relative flex items-center justify-center px-6 py-2 rounded-full ${isActive ? 'mx-[1px] my-[1px]' : ''}`}
+        style={{ background: innerBg || 'var(--background, #000)' }}>
         {title}
       </span>
     </button>
