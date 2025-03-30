@@ -17,32 +17,20 @@ import BookingsCard from "./components/BookingsCard";
 import { BookingDetailsData } from "@/types/dashboard";
 import BookingStatusBar from "./components/BookingStatusBar";
 import { Divider } from "@mantine/core";
-
-// Simple skeleton loading component
-const DetailsSkeleton = () => (
-  <div className="p-6 space-y-4 bg-white rounded-xl animate-pulse">
-    <div className="h-6 bg-gray-200 rounded w-1/4"></div>
-    <div className="h-4 bg-gray-200 rounded w-3/4"></div>
-    <div className="space-y-2">
-      <div className="h-4 bg-gray-200 rounded"></div>
-      <div className="h-4 bg-gray-200 rounded w-5/6"></div>
-      <div className="h-4 bg-gray-200 rounded w-3/4"></div>
-    </div>
-  </div>
-);
+import DetailsPageSkeleton from "../../_components/skeletons/DetailsPageSkeleton";
+import DashboardCardSkeleton from "../../_components/skeletons/DashboardCardSkeleton";
 
 export const getStatusClass = (status: string | undefined) => {
-    if (status === "confirmed") return "text-green-600 bg-[#05603A1A]";
-    if (status === "cancelled") return "text-black/80 bg-red-100";
-    return "text-gray-600 bg-gray-100";
-  };
+  if (status === "confirmed") return "text-green-600 bg-[#05603A1A]";
+  if (status === "cancelled") return "text-black/80 bg-red-100";
+  return "text-gray-600 bg-gray-100";
+};
 
-  export const getCircleClass = (status: string | undefined) => {
-    if (status === "confirmed") return "bg-[#05603A]";
-    if (status === "cancelled") return "bg-red-700";
-    return "bg-gray-700";
-  };
-
+export const getCircleClass = (status: string | undefined) => {
+  if (status === "confirmed") return "bg-[#05603A]";
+  if (status === "cancelled") return "bg-red-700";
+  return "bg-gray-700";
+};
 
 export default function BookingDetailsPage() {
   const params = useParams();
@@ -54,13 +42,17 @@ export default function BookingDetailsPage() {
     queryFn: () => getSingleBooking(id),
   });
 
-
-
   const handleCancelClick = () => {
     setCancelBooking(id);
   };
 
-  if (isLoading) return <DetailsSkeleton />;
+  if (isLoading) {
+    return (
+      <DashboardShell card={<DashboardCardSkeleton />}>
+        <DetailsPageSkeleton />
+      </DashboardShell>
+    );
+  }
 
   return (
     <DashboardShell card={<BookingsCard data={data as BookingDetailsData} />}>

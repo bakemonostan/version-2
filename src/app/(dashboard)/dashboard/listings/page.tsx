@@ -8,25 +8,34 @@ import { columns } from "./_components/listingsTableColums";
 import { useQuery } from "@tanstack/react-query";
 import { getUserListingTableData } from "@/services/dashboard";
 import HeaderComponent from "../_components/HeaderComponent";
-
+import TableSkeleton from "../_components/skeletons/TableSkeleton";
+import DashboardCardSkeleton from "../_components/skeletons/DashboardCardSkeleton";
 export default function ListingsPage() {
-  const { data: TableData } = useQuery({
+  const { data: TableData, isPending } = useQuery({
     queryKey: ["listings"],
     queryFn: getUserListingTableData,
   });
 
   return (
-    <DashboardShell card={<OverviewSideCard />}>
-      <div className="p-4">
-        <HeaderComponent title="Your listed vehicles"
-          subtitle="Manage your listed vehicles"
-          withSubtitle
-        />
-      </div>
-      <DataTable
-        columns={columns}
-        data={TableData || []}
-      />
+    <DashboardShell
+      card={isPending ? <DashboardCardSkeleton /> : <OverviewSideCard />}>
+      {isPending ? (
+        <TableSkeleton />
+      ) : (
+        <div className="p-4">
+          <div className="p-4">
+            <HeaderComponent
+              title="Your listed vehicles"
+              subtitle="Manage your listed vehicles"
+              withSubtitle
+            />
+          </div>
+          <DataTable
+            columns={columns}
+            data={TableData || []}
+          />
+        </div>
+      )}
     </DashboardShell>
   );
 }

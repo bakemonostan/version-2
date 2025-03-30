@@ -10,6 +10,8 @@ import { VehicleListingDetailsData } from "@/types/dashboard";
 import ListingRates from "../_components/ListingRates";
 import ListingStatusBar from "../_components/ListingStatusBar";
 import ListingsSideCard from "../_components/ListingsSideCard";
+import DashboardCardSkeleton from "../../_components/skeletons/DashboardCardSkeleton";
+import DetailsPageSkeleton from "../../_components/skeletons/DetailsPageSkeleton";
 
 interface ListDetailsPageProps {
   params: Promise<{
@@ -19,16 +21,30 @@ interface ListDetailsPageProps {
 
 export default function ListDetailsPage({ params }: ListDetailsPageProps) {
   const { id } = use(params);
-  const { data } = useCustomQuery(
+  const { data, isLoading } = useCustomQuery(
     ["getsingleListing", id as string],
     () => getsingleListing(id as string),
     {
       enabled: !!id,
     }
   );
-  console.log(data?.images.map((image) => image.image));
+
+  if (isLoading) {
+    return (
+      <DashboardShell card={<DashboardCardSkeleton />}>
+        <DetailsPageSkeleton withImageSlider />
+      </DashboardShell>
+    );
+  }
+
   return (
-    <DashboardShell card={<ListingsSideCard listingId={id as string} data={data as VehicleListingDetailsData} />}>
+    <DashboardShell
+      card={
+        <ListingsSideCard
+          listingId={id as string}
+          data={data as VehicleListingDetailsData}
+        />
+      }>
       <ImageCarousel images={data?.images.map((image) => image.image) || []} />
       <div className="pt-8">
         <HeaderComponent title={data?.title} />

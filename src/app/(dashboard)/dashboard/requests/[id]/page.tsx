@@ -12,6 +12,8 @@ import { RequestDetailsData } from "@/types/dashboard";
 import RequestDetailsHostComponent from "./_components/RequestDetailsHostComponent";
 import RequestDetailsDocuments from "./_components/RequestDetailsDocuments";
 import RequestDetailsRates from "./_components/RequestDetailsRates";
+import DashboardCardSkeleton from "../../_components/skeletons/DashboardCardSkeleton";
+import DetailsPageSkeleton from "../../_components/skeletons/DetailsPageSkeleton";
 interface RequestPageProps {
   params: Promise<{
     id: string;
@@ -20,11 +22,19 @@ interface RequestPageProps {
 
 export default function RequestPage({ params }: RequestPageProps) {
   const { id } = use(params);
-  const { data } = useQuery({
+  const { data, isPending } = useQuery({
     queryKey: ["request", id],
     queryFn: () => getSingleRequest(id),
     enabled: !!id,
   });
+
+  if (isPending) {
+    return (
+      <DashboardShell card={<DashboardCardSkeleton />}>
+        <DetailsPageSkeleton withImageSlider={false} />
+      </DashboardShell>
+    );
+  }
 
   console.log(data);
   return (
