@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import useCustomQuery from "@/hooks/mutations/useCustomQuery";
 import { getUserDetails } from "@/services/dashboard";
 import { useUserStore } from "@/store/userStore";
+import DetailsPageSkeleton from "../../_components/skeletons/DetailsPageSkeleton";
 interface Tab {
   value: string;
   label: string;
@@ -33,13 +34,21 @@ const tabs: Tab[] = [
 
 export default function MyAccountTabs() {
   const [activeTab, setActiveTab] = useState(tabs[0].value);
-  const { data, isSuccess } = useCustomQuery(["user-details"], getUserDetails);
+  const { data, isSuccess, isLoading } = useCustomQuery(
+    ["user-details"],
+    getUserDetails
+  );
   const { setUser } = useUserStore();
   useEffect(() => {
     if (isSuccess && data?.data.data) {
       setUser(data.data.data);
     }
   }, [isSuccess, data]);
+
+  if (isLoading) {
+    return <DetailsPageSkeleton />;
+  }
+
   return (
     <Tabs
       color="black"
