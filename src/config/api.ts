@@ -39,7 +39,7 @@ api.interceptors.response.use(
         toast.error(error.response.data.message, {
           description: "Please log in 😊",
         });
-        // window.location.href = "/";
+        window.location.href = "/auth";
       }
       errorMessage = error.response.data.message;
     } else if (error.request) {

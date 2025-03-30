@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import React from "react";
 import { ColumnDef } from "@tanstack/react-table";
 import { formatDate } from "@/utils/general";

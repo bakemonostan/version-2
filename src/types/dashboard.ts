@@ -90,6 +90,7 @@ export interface RequestDetailsData {
   date: string
   image: string
   vehicle: Vehicle
+
 }
 export interface BookingsTableData {
   id: string
@@ -157,6 +158,7 @@ export interface Vehicle {
     name: string
     profile_picture: string
   }
+  unavailability_period: UnavailabilityPeriod[]
   location: string
   location_lat: string | null
   location_lng: string | null
@@ -244,11 +246,11 @@ export interface TravelFeature {
 
 export interface RentalRate {
   id: string
-  daily_rate: string
-  weekly_rate: string
-  monthly_rate: string
-  security_deposit: string
-  cleaning_fee: string
+  daily_rate: number
+  weekly_rate: number
+  monthly_rate: number
+  security_deposit: number
+  cleaning_fee: number
   advance_notice: number
   max_trip_duration: number
   availability: string | null
