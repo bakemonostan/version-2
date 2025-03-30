@@ -51,9 +51,16 @@ export function TextInput<T extends FieldValues = FieldValues>({
           <FormLabel className="capitalize">{label}</FormLabel>
           <FormControl>
             {isTextArea ? (
-              <Textarea {...field} placeholder={placeholder} />
+              <Textarea
+                {...field}
+                placeholder={placeholder}
+              />
             ) : (
-              <Input {...field} placeholder={placeholder} />
+              <Input
+                className="shadow-none active:shadow-none focus:shadow-none rounded-sm"
+                {...field}
+                placeholder={placeholder}
+              />
             )}
           </FormControl>
           <FormMessage />
@@ -78,7 +85,10 @@ export function SelectInput<T extends FieldValues = FieldValues>({
       render={({ field }) => (
         <FormItem>
           <FormLabel>{labelText}</FormLabel>
-          <Select onValueChange={field.onChange} defaultValue={field.value} disabled={props.disabled}>
+          <Select
+            onValueChange={field.onChange}
+            defaultValue={field.value}
+            disabled={props.disabled}>
             <FormControl>
               <SelectTrigger className="w-full border-0 pl-0">
                 <SelectValue placeholder={placeholder}>
@@ -88,7 +98,9 @@ export function SelectInput<T extends FieldValues = FieldValues>({
             </FormControl>
             <SelectContent>
               {items.map((item) => (
-                <SelectItem key={item} value={item}>
+                <SelectItem
+                  key={item}
+                  value={item}>
                   {item}
                 </SelectItem>
               ))}
@@ -141,11 +153,15 @@ export function RadioInput<T extends FieldValues = FieldValues>({
             <RadioGroup
               onValueChange={field.onChange}
               defaultValue={field.value}
-              value={field.value}
-            >
+              value={field.value}>
               {options.map((option) => (
-                <div key={option} className="flex items-center space-x-2">
-                  <RadioGroupItem value={option} id={option} />
+                <div
+                  key={option}
+                  className="flex items-center space-x-2">
+                  <RadioGroupItem
+                    value={option}
+                    id={option}
+                  />
                   <Label htmlFor={option}>{option}</Label>
                 </div>
               ))}
@@ -172,7 +188,10 @@ export function SwitchInput<T extends FieldValues = FieldValues>({
         <FormItem>
           <FormLabel className="capitalize">{label}</FormLabel>
           <FormControl>
-            <Switch {...field} color="yellow.4" />
+            <Switch
+              {...field}
+              color="yellow.4"
+            />
           </FormControl>
           <FormMessage />
         </FormItem>

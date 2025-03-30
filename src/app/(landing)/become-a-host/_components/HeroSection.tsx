@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import Shell from "@/components/Shell";
 import React from "react";
 

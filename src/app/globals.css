@@ -305,7 +305,7 @@
 }
 
 .header-6 {
-  @apply text-heading-6 leading-0;
+  @apply text-heading-6 ;
 }
 
 .header-alt {

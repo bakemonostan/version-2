@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 import { useMediaQuery, useMounted } from "@mantine/hooks";
 import { Carousel, CarouselSlide } from "@mantine/carousel";

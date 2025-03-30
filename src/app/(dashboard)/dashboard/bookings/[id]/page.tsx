@@ -4,7 +4,7 @@ import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import { getSingleBooking } from "@/services/dashboard";
 import { useParams } from "next/navigation";
-import { formatCurrencyToEuros, formatDate } from "@/utils/general";
+import { formatCurrencyToEuros, formatDate, getStatusClass, getCircleClass } from "@/utils/general";
 import { BookmarkIcon, MapIcon, Share2Icon } from "lucide-react";
 import DashboardShell from "../../_components/DashboardShell";
 import HeaderComponent from "../../_components/HeaderComponent";
@@ -20,17 +20,7 @@ import { Divider } from "@mantine/core";
 import DetailsPageSkeleton from "../../_components/skeletons/DetailsPageSkeleton";
 import DashboardCardSkeleton from "../../_components/skeletons/DashboardCardSkeleton";
 
-export const getStatusClass = (status: string | undefined) => {
-  if (status === "confirmed") return "text-green-600 bg-[#05603A1A]";
-  if (status === "cancelled") return "text-black/80 bg-red-100";
-  return "text-gray-600 bg-gray-100";
-};
 
-export const getCircleClass = (status: string | undefined) => {
-  if (status === "confirmed") return "bg-[#05603A]";
-  if (status === "cancelled") return "bg-red-700";
-  return "bg-gray-700";
-};
 
 export default function BookingDetailsPage() {
   const params = useParams();

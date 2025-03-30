@@ -76,3 +76,16 @@ export const calculatePriceAfterVat = (price: number, vat: number) => {
   const priceAfterVat = price - vatAmountNumber
   return formatCurrencyToEuros(priceAfterVat)
 }
+
+
+export const getStatusClass = (status: string | undefined) => {
+  if (status === "confirmed") return "text-green-600 bg-[#05603A1A]";
+  if (status === "cancelled") return "text-black/80 bg-red-100";
+  return "text-gray-600 bg-gray-100";
+};
+
+export const getCircleClass = (status: string | undefined) => {
+  if (status === "confirmed") return "bg-[#05603A]";
+  if (status === "cancelled") return "bg-red-700";
+  return "bg-gray-700";
+};

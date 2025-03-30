@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { RocketShipIcon } from "@/components/icons";
 import Shell from "@/components/Shell";
 

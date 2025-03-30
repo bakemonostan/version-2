@@ -4,11 +4,11 @@ import { createContext, useContext, useState, ReactNode } from "react";
 import { ModalId, ModalParamsMap } from "@/types/modal-types";
 
 type ModalParamsType = {
-  [K in ModalId]?: ModalParamsMap[K];
+  [K in ModalId & keyof ModalParamsMap]?: ModalParamsMap[K];
 };
 
 interface ModalContextType {
-  openModal: <T extends ModalId>(id: T, params?: ModalParamsMap[T]) => void;
+  openModal: <T extends ModalId & keyof ModalParamsMap>(id: T, params?: ModalParamsMap[T]) => void;
   closeModal: () => void;
   activeModal: ModalId | null;
   modalParams: ModalParamsType | null;
@@ -32,7 +32,7 @@ export function ModalProvider({ children }: ModalProviderProps) {
   const [activeModal, setActiveModal] = useState<ModalId | null>(null);
   const [modalParams, setModalParams] = useState<ModalParamsType | null>(null);
 
-  const openModal = <T extends ModalId>(id: T, params?: ModalParamsMap[T]) => {
+  const openModal = <T extends ModalId & keyof ModalParamsMap>(id: T, params?: ModalParamsMap[T]) => {
     setActiveModal(id);
     if (params) {
       setModalParams({ [id]: params });

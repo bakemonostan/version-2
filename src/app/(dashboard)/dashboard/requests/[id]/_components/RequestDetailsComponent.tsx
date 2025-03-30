@@ -1,7 +1,6 @@
 import { RequestDetailsData } from "@/types/dashboard";
-import { formatDate } from "@/utils/general";
+import { formatDate, getCircleClass, getStatusClass } from "@/utils/general";
 import { Divider } from "@mantine/core";
-import { getCircleClass, getStatusClass } from "../../../bookings/[id]/page";
 
 interface RequestDetailsComponentProps {
   data: RequestDetailsData;

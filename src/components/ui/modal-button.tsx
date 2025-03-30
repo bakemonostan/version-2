@@ -5,13 +5,13 @@ import { ReactNode } from "react";
 import { Button } from "./button";
 import { useModal } from "@/providers/ModalContext";
 
-interface ModalButtonProps<T extends ModalId> extends React.ComponentProps<typeof Button> {
+interface ModalButtonProps<T extends ModalId & keyof ModalParamsMap> extends React.ComponentProps<typeof Button> {
   modalId: T;
   modalParams?: ModalParamsMap[T];
   children: ReactNode;
 }
 
-export function ModalButton<T extends ModalId>({ 
+export function ModalButton<T extends ModalId & keyof ModalParamsMap>({ 
   modalId, 
   modalParams,
   children,

@@ -1,7 +1,11 @@
 // Basic modals
-export type DashboardModalId = "listings" | "edit-bio" | "edit-details";
+export type AppModalIds =
+  | "listings"
+  | "edit-bio"
+  | "edit-details"
+  | "address-modal";
 
-export type ModalId = DashboardModalId;
+export type ModalId = AppModalIds;
 
 export interface ListingsModalParams {
   listingId?: string;
