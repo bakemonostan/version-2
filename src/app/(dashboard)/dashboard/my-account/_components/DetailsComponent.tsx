@@ -1,7 +1,8 @@
 import React from 'react';
 import { Skeleton } from "@mantine/core";
+import { cn } from "@/lib/utils";
 
-interface DetailsComponentProps {
+interface DetailsComponentProps extends React.HTMLAttributes<HTMLDivElement> {
   title: string;
   subtitle?: string;
   linkText?: string;
@@ -10,9 +11,10 @@ interface DetailsComponentProps {
   isColumn?: boolean;
   withLink?: boolean;
   onAction?: () => void;
+  className?: string;
 }
 
-export default function DetailsCompoennt({
+export default function DetailsComponent({
   title,
   subtitle = "",
   linkText = "Edit",
@@ -21,6 +23,8 @@ export default function DetailsCompoennt({
   isColumn = false,
   withLink = false,
   onAction,
+  className,
+  ...props
 }: DetailsComponentProps) {
   
   const handleAction = () => {
@@ -31,9 +35,12 @@ export default function DetailsCompoennt({
 
   return (
     <div
-      className={`flex justify-between border-b py-8 ${
-        isColumn ? 'flex-col' : 'items-center'
-      }`}
+      className={cn(
+        "flex justify-between border-b py-8",
+        isColumn ? "flex-col" : "items-center",
+        className
+      )}
+      {...props}
     >
       <div
         className={`space-y-1 text-sm sm:text-base text-black/60 ${
@@ -57,7 +64,7 @@ export default function DetailsCompoennt({
       </div>
       {withLink ? (
         <div className="py-5 cursor-pointer" onClick={handleAction}>
-          <p className="text-sm font-bold sm:text-base">{linkText}</p>
+          <p className="text-sm font-bold sm:text-base cursor-pointer w-max">{linkText}</p>
         </div>
       ) : (
         <div>{null}</div>

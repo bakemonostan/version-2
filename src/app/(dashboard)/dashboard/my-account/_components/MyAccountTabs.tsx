@@ -2,7 +2,6 @@
 import { Tabs, TabsList, TabsPanel, TabsTab } from "@mantine/core";
 import PersonalDetails from "./PersonalDetails";
 import ProfileTab from "./ProfileTab";
-import Password from "./Password";
 import Verification from "./Verification";
 import { useEffect, useState } from "react";
 import useCustomQuery from "@/hooks/mutations/useCustomQuery";
@@ -26,11 +25,6 @@ const tabs: Tab[] = [
     component: <ProfileTab />,
   },
   {
-    value: "password",
-    label: "Password",
-    component: <Password />,
-  },
-  {
     value: "verification",
     label: "Verification",
     component: <Verification />,
@@ -48,7 +42,6 @@ export default function MyAccountTabs() {
   }, [isSuccess, data]);
   return (
     <Tabs
-      defaultValue="personal-details"
       color="black"
       value={activeTab}
       onChange={(value) => setActiveTab(value || tabs[0].value)}>

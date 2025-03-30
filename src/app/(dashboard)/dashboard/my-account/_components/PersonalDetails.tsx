@@ -1,33 +1,44 @@
 "use client";
 import { useUserStore } from "@/store/userStore";
-import DetailsCompoennt from "./DetailsCompoennt";
+import DetailsComponent from "./DetailsComponent";
 import { ProfileCarousel } from "@/app/(dashboard)/dashboard/my-account/_components/ProfileCarousel";
+import { useModal } from "@/providers/ModalContext";
 
 export default function PersonalDetails() {
   const { user } = useUserStore();
+  const { openModal } = useModal();
   console.log(user);
   return (
     <div className="flex flex-col">
-      <DetailsCompoennt
+      <DetailsComponent
         title="Legal name"
         subtitle={user?.legal_name}
       />
-      <DetailsCompoennt
+      <DetailsComponent
         title="Residential address"
         subtitle={user?.address || "No address added"}
         withLink={true}
+        onAction={() => {
+          openModal("edit-details", { modalType: "address" });
+        }}
       />
-      <DetailsCompoennt
+      <DetailsComponent
         title="Email address"
         subtitle={user?.email}
         withLink={true}
+        onAction={() => {
+          openModal("edit-details", { modalType: "email" });
+        }}
       />
 
-      <DetailsCompoennt
+      <DetailsComponent
         title="Phone number"
         subtitle={user?.telephone || "No phone number added"}
         withLink={true}
         info="Your number will only be shared with someone you have a confirmed booking with."
+        onAction={() => {
+          openModal("edit-details", { modalType: "telephone" });
+        }}
       />
       <div className="mt-10">
         <ProfileCarousel />
