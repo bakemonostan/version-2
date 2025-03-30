@@ -304,6 +304,10 @@
   @apply text-heading-4 leading-0 font-bold;
 }
 
+.header-6 {
+  @apply text-heading-6 leading-0;
+}
+
 .header-alt {
 }
 

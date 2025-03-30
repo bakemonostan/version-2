@@ -4,7 +4,7 @@ import PersonalDetails from "./PersonalDetails";
 import ProfileTab from "./ProfileTab";
 import Password from "./Password";
 import Verification from "./Verification";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useCustomQuery from "@/hooks/mutations/useCustomQuery";
 import { getUserDetails } from "@/services/dashboard";
 import { useUserStore } from "@/store/userStore";
@@ -41,14 +41,11 @@ export default function MyAccountTabs() {
   const [activeTab, setActiveTab] = useState(tabs[0].value);
   const { data, isSuccess } = useCustomQuery(["user-details"], getUserDetails);
   const { setUser } = useUserStore();
-  if (isSuccess && data?.data.data) {
-    const userData = data.data.data;
-    setUser({
-      ...userData,
-      picture: userData.picture || "",
-      reviews: (userData.reviews || []) as string[],
-    });
-  }
+  useEffect(() => {
+    if (isSuccess && data?.data.data) {
+      setUser(data.data.data);
+    }
+  }, [isSuccess, data]);
   return (
     <Tabs
       defaultValue="personal-details"
