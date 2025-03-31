@@ -1,17 +1,17 @@
 "use client";
 
-import { ModalId, ModalParamsMap } from "@/types/modal-types";
+import { ModalId, ModalParamsFor } from "@/types/modal-types";
 import { ReactNode } from "react";
 import { Button } from "./button";
 import { useModal } from "@/providers/ModalContext";
 
-interface ModalButtonProps<T extends ModalId & keyof ModalParamsMap> extends React.ComponentProps<typeof Button> {
+interface ModalButtonProps<T extends ModalId> extends React.ComponentProps<typeof Button> {
   modalId: T;
-  modalParams?: ModalParamsMap[T];
+  modalParams?: ModalParamsFor<T>;
   children: ReactNode;
 }
 
-export function ModalButton<T extends ModalId & keyof ModalParamsMap>({ 
+export function ModalButton<T extends ModalId>({ 
   modalId, 
   modalParams,
   children,

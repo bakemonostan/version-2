@@ -1,12 +1,16 @@
 "use client";
 import { TextInput } from "@/components/Form/FormFields";
-import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useDebouncedValue } from "@mantine/hooks";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import { useVehicleListingStore } from "../../vehicleListingstore";
+import { fetchAddressFromPostalCode } from "../../utils/addressUtils";
+import { useModal } from "@/providers/ModalContext";
+import { ModalButton } from "@/components/ui/modal-button";
+import { toast } from "sonner";
 
 const schema = z.object({
   postalCode: z
@@ -21,6 +25,10 @@ const schema = z.object({
 type PostalCodeFormSchema = z.infer<typeof schema>;
 
 export default function PostalCodeForm() {
+  const [isLoading, setIsLoading] = useState(false);
+  const { openModal } = useModal();
+  const { setAddress, setPostalCode } = useVehicleListingStore();
+
   const form = useForm<PostalCodeFormSchema>({
     resolver: zodResolver(schema),
     defaultValues: {
@@ -29,16 +37,56 @@ export default function PostalCodeForm() {
   });
 
   const postalCode = form.watch("postalCode");
-  const [debouncedPostalCode] = useDebouncedValue(postalCode, 2000);
+  const [debouncedPostalCode] = useDebouncedValue(postalCode, 700);
+
+  // Calculate if debounce is active (button should be disabled)
+  const isDebouncing =
+    postalCode !== debouncedPostalCode || !debouncedPostalCode;
 
   useEffect(() => {
-    if (debouncedPostalCode) {
-      console.log("Debounced postal code:", debouncedPostalCode);
-    }
+    const processPostalCode = async () => {
+      if (debouncedPostalCode) {
+        setIsLoading(true);
+        console.log("Debounced postal code:", debouncedPostalCode);
+
+        // Update the store with the postal code
+        setPostalCode(debouncedPostalCode);
+
+        // Fetch and extract address data
+        const data = await fetchAddressFromPostalCode(debouncedPostalCode);
+
+        if (data) {
+          console.log("Address data retrieved:", data);
+          setAddress(data);
+          
+          if (!data.isError) {
+            toast.success("Address found", {
+              description: `Postal code: ${debouncedPostalCode} is valid, please continue to the next step`,
+            });
+          }
+        }
+
+        if (data?.isError) {
+          toast.error("No address found", {
+            description: `Please check your postal code and try again`,
+          });
+          form.setError("postalCode", {
+            message: "Invalid postal code",
+          });
+          form.reset({ postalCode: "" });
+        }
+
+        setIsLoading(false);
+      }
+    };
+
+    processPostalCode();
   }, [debouncedPostalCode]);
 
   const onSubmit = (values: PostalCodeFormSchema) => {
-    console.log("Form submitted with:", values);
+    openModal("address-modal");
+    form.reset({ postalCode: "" });
+    setPostalCode(values.postalCode);
   };
 
   return (
@@ -54,13 +102,19 @@ export default function PostalCodeForm() {
             control={form.control}
             name="postalCode"
           />
+          {isLoading && (
+            <p className="text-sm text-muted-foreground mt-1">
+              Processing postal code...
+            </p>
+          )}
           <div className="flex justify-start pt-4">
-            <Button
+            <ModalButton
+              modalId="address-modal"
               type="submit"
               variant="cta"
-              disabled={!debouncedPostalCode}>
+              disabled={isDebouncing || isLoading}>
               Continue
-            </Button>
+            </ModalButton>
           </div>
         </form>
       </Form>

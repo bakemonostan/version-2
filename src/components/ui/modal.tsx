@@ -17,9 +17,10 @@ interface ModalProps {
   description?: string;
   children: ReactNode;
   className?: string;
+  onClose?: () => void;
 }
 
-export function Modal({ id, title, description = "", children, className }: ModalProps) {
+export function Modal({ id, title, description = "", children, className, onClose }: ModalProps) {
   const { activeModal, closeModal } = useModal();
   const [open, setOpen] = useState(false);
   
@@ -31,6 +32,7 @@ export function Modal({ id, title, description = "", children, className }: Moda
     setOpen(open);
     if (!open) {
       closeModal();
+      onClose?.();
     }
   };
 
@@ -42,8 +44,8 @@ export function Modal({ id, title, description = "", children, className }: Moda
       <DialogContent className={dialogClassNames}>
         {title && (
           <DialogHeader>
-            <DialogTitle>{title}</DialogTitle>
-            <DialogDescription className={description ? "" : "sr-only"}>
+            <DialogTitle className="header-l">{title}</DialogTitle>
+            <DialogDescription className={description ? "body-2 text-black" : "sr-only"}>
               {description || `${title} dialog`}
             </DialogDescription>
           </DialogHeader>

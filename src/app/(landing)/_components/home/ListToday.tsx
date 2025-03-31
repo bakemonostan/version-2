@@ -10,7 +10,7 @@ export default function ListToday() {
   return (
     <section className="py-[92px]">
       <Shell className="bg-landing-bg rounded-4xl lg:p-16">
-        <div className="grid md:grid-cols-2 gap-8 items-center ">
+        <div className="grid md:grid-cols-2 gap-[103px] items-center ">
           <div className=" space-y-6">
             <h2 className="heading-3">
               Turn Your Vehicle Into Income <br /> - List It Today!
@@ -61,7 +61,7 @@ export default function ListToday() {
             </div>
           </div>
 
-          <div className="relative h-[400px] rounded-2xl overflow-hidden">
+          <div className="relative h-[450px] w-[450px] rounded-2xl overflow-hidden">
             <Image
               src="/images/car-image-hero.jpg"
               alt="Person with car"

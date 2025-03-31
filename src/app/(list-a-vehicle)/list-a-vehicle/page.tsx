@@ -1,9 +1,22 @@
+"use client";
 import HeaderComponent from "@/app/(dashboard)/dashboard/_components/HeaderComponent";
 import Shell from "@/components/Shell";
 import { Divider } from "@mantine/core";
-import React from "react";
+import React, { useEffect } from "react";
 import PostalCodeForm from "./components/forms/PostalCodeForm";
-export default function page() {
+import { useVehicleListingStore } from "./vehicleListingstore";
+import { usePathname } from "next/navigation";
+
+export default function ListAVehiclePage() {
+  const { resetStore } = useVehicleListingStore();
+  const pathname = usePathname();
+
+  useEffect(() => {
+    if (pathname === "/list-a-vehicle") {
+      resetStore();
+    }
+  },[]);
+
   return (
     <div className="pt-5">
       <Shell>
@@ -15,6 +28,7 @@ export default function page() {
           />
           <Divider className="my-8" />
           <PostalCodeForm />
+    
         </div>
       </Shell>
     </div>

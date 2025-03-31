@@ -14,18 +14,40 @@
 
 /* Ensure Tailwind width classes work properly with Mantine modals */
 .override-mantine-modal {
-  &.max-w-sm { max-width: 384px !important; }
-  &.max-w-md { max-width: 448px !important; }
-  &.max-w-lg { max-width: 512px !important; }
-  &.max-w-xl { max-width: 576px !important; }
-  &.max-w-2xl { max-width: 672px !important; }
-  &.max-w-3xl { max-width: 768px !important; }
-  &.max-w-4xl { max-width: 896px !important; }
-  &.max-w-5xl { max-width: 1024px !important; }
-  &.max-w-6xl { max-width: 1152px !important; }
-  &.max-w-7xl { max-width: 1280px !important; }
+  &.max-w-sm {
+    max-width: 384px !important;
+  }
+  &.max-w-md {
+    max-width: 448px !important;
+  }
+  &.max-w-lg {
+    max-width: 512px !important;
+  }
+  &.max-w-xl {
+    max-width: 576px !important;
+  }
+  &.max-w-2xl {
+    max-width: 672px !important;
+  }
+  &.max-w-3xl {
+    max-width: 768px !important;
+  }
+  &.max-w-4xl {
+    max-width: 896px !important;
+  }
+  &.max-w-5xl {
+    max-width: 1024px !important;
+  }
+  &.max-w-6xl {
+    max-width: 1152px !important;
+  }
+  &.max-w-7xl {
+    max-width: 1280px !important;
+  }
   /* Support for explicit pixel widths */
-  &[class*="max-w-["] { max-width: var(--tw-max-w) !important; }
+  &[class*="max-w-["] {
+    max-width: var(--tw-max-w) !important;
+  }
 }
 
 @theme {
@@ -297,6 +319,10 @@
 .text-secondary {
 }
 
+.header-l {
+  @apply text-[30px];
+}
+
 .header-3 {
 }
 
@@ -305,7 +331,7 @@
 }
 
 .header-6 {
-  @apply text-heading-6 ;
+  @apply text-heading-6;
 }
 
 .header-alt {

@@ -1,14 +1,14 @@
 "use client";
 
 import { createContext, useContext, useState, ReactNode } from "react";
-import { ModalId, ModalParamsMap } from "@/types/modal-types";
+import { ModalId, ModalParamsFor } from "@/types/modal-types";
 
 type ModalParamsType = {
-  [K in ModalId & keyof ModalParamsMap]?: ModalParamsMap[K];
+  [K in ModalId]?: ModalParamsFor<K>;
 };
 
 interface ModalContextType {
-  openModal: <T extends ModalId & keyof ModalParamsMap>(id: T, params?: ModalParamsMap[T]) => void;
+  openModal: <T extends ModalId>(id: T, params?: ModalParamsFor<T>) => void;
   closeModal: () => void;
   activeModal: ModalId | null;
   modalParams: ModalParamsType | null;
@@ -32,10 +32,10 @@ export function ModalProvider({ children }: ModalProviderProps) {
   const [activeModal, setActiveModal] = useState<ModalId | null>(null);
   const [modalParams, setModalParams] = useState<ModalParamsType | null>(null);
 
-  const openModal = <T extends ModalId & keyof ModalParamsMap>(id: T, params?: ModalParamsMap[T]) => {
+  const openModal = <T extends ModalId>(id: T, params?: ModalParamsFor<T>) => {
     setActiveModal(id);
     if (params) {
-      setModalParams({ [id]: params });
+      setModalParams({ [id]: params } as ModalParamsType);
     } else {
       setModalParams(null);
     }
