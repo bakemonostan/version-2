@@ -40,7 +40,7 @@ const { mutate } = useMutation({
     <Modal
       id="listings"
       title={`${data?.status === "active" ? "Pause" : "Resume"} Ad`}
-      className="max-w-lg">
+      className="modal-md">
       <div className="space-y-4">
         <p className="body-2 text-black/60">
           {data?.status === "active"
@@ -52,11 +52,13 @@ const { mutate } = useMutation({
         <ModalButton
           variant="outline"
           modalId="listings"
+          className="border-none shadow-none"
           onClick={() => closeModal()}>
           Cancel
         </ModalButton>
         <ModalButton
           modalId="listings"
+          className="rounded-full"
           onClick={() => mutate()}>
           {data?.status === "active" ? "Pause" : "Resume"}
         </ModalButton>

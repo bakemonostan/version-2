@@ -20,11 +20,10 @@ export default function LandingNavbar() {
         </Link>
         <div className="items-center gap-3.5 sm:flex hidden">
           <div className="px-2">
-            <Button
+          <Button
               variant="outline"
-              color="black"
               className="h-10 rounded-full border-black/80 active:bg-black/10 active:translate-y-1 transition-all active:duration-300">
-              <p className="px-6 py-6">Start earning on Kaparki</p>
+              <Link href="/list-a-vehicle" className="px-2 ">Start earning on Kaparki</Link>
             </Button>
           </div>
         </div>

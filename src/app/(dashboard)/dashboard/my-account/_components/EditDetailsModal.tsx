@@ -13,8 +13,7 @@ export default function EditDetailsModal() {
       id="edit-details"
       title="Edit Details"
       description="Edit your details"
-      className="max-w-lg"
-    >
+      className="modal-md">
       {modalType === "address" && <AddressModal />}
       {modalType === "email" && <EmailModal />}
       {modalType === "telephone" && <PhoneModal />}

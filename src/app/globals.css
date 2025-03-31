@@ -13,7 +13,7 @@
 }
 
 /* Ensure Tailwind width classes work properly with Mantine modals */
-.override-mantine-modal {
+/* .override-mantine-modal {
   &.max-w-sm {
     max-width: 24rem !important;
   }
@@ -41,14 +41,16 @@
   &.max-w-6xl {
     max-width: 72rem !important;
   }
+  &.max-w-modal-md {
+    max-width: 31.25rem !important;
+  }
   &.max-w-7xl {
     max-width: 80rem !important;
   }
-  /* Support for explicit pixel widths */
   &[class*="max-w-["] {
     max-width: var(--tw-max-w) !important;
   }
-}
+} */
 
 @theme {
   --font-sans: var(--font-outfit);
@@ -181,6 +183,7 @@
   --color-landing-bg: var(--landing-bg);
 }
 
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
@@ -260,6 +263,10 @@
   .gradient-border {
     @apply relative border-0 data-[state=active]:shadow-none bg-origin-border bg-clip-padding p-[.0625rem] rounded-full;
     @apply data-[state=active]:bg-gradient-to-r data-[state=active]:from-[#FFCB4E] data-[state=active]:to-[#AD75E2] data-[state=inactive]:border data-[state=inactive]:border-border;
+  }
+
+  .modal-md {
+    @apply max-w-[31.25rem];
   }
 
   .gradient-border-inner {

@@ -92,7 +92,7 @@ export default function NavDropdownMenu() {
           )}
           {!user && (
             <DropdownMenuItem className="p-0">
-              <div className="flex justify-center w-full py-3 px-4">
+              <div className="flex justify-center w-full py-2 px-4">
                 <Button variant="cta">
                   <Link
                     href="/list-a-vehicle"

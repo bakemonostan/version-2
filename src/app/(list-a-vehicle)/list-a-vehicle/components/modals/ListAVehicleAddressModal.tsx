@@ -61,8 +61,6 @@ export default function ListAVehicleAddressModal() {
         
         // Set the postal code in the store to trigger the map update
         setPostalCode(postal_code);
-        
-        // Also update the address with coordinates in the store
         if (addressData.coordinates) {
           setAddress({
             ...address,
@@ -112,7 +110,7 @@ export default function ListAVehicleAddressModal() {
           ? "Guests will pick up your car here. Adjust the pin if this doesn't match your cars exact location."
           : "We need your complete address"
       }
-      className="max-w-lg">
+      className="modal-md">
       {!toggleMap && (
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)}>

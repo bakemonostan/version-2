@@ -52,7 +52,7 @@ export const EditBioModal = () => {
     <Modal
       id="edit-bio"
       title={`Edit Bio`}
-      className="max-w-lg">
+      className="modal-md">
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
