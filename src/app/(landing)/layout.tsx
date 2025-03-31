@@ -8,15 +8,15 @@ export default function LandingLayout({
   children: React.ReactNode;
 }) {
   return (
-    <>
+    <div className="relative min-h-screen">
       <LandingNavbar />
-      <div className="flex min-h-screen flex-col">
+      <div className="flex flex-col">
         <main className="flex-1 pb-16">
           {children}
           <ReviewSection />
           <FAQ />
         </main>
       </div>
-    </>
+    </div>
   );
 }
