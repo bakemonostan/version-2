@@ -5,16 +5,15 @@ import Shell from "@/components/Shell";
 export default function GettingStartedSection() {
   return (
     <section
-      className="relative overflow-hidden py-24"
+      className="relative overflow-hidden py-[5.75rem] "
       style={{
         background:
           "radial-gradient(circle at bottom left, #DBC5F4 10%, rgba(219, 197, 244, 0.3) 20%, #FAE8CF1A 80%)",
-      }}
-    >
+      }}>
       <Shell>
-        <div className="flex flex-col lg:flex-row items-center gap-12">
+        <div className="flex flex-col lg:grid lg:grid-cols-2 items-center gap-[8.5rem] ">
           <div className="w-full lg:w-1/2">
-            <div className="rounded-2xl p-4 bg-white overflow-hidden w-[468px] h-[548px] relative">
+            <div className="rounded-2xl p-4 bg-white overflow-hidden w-[29.25rem] h-[34.25rem] relative">
               <img
                 src="/images/kpk-hero-3.png"
                 alt="Vehicle rental"
@@ -36,12 +35,11 @@ export default function GettingStartedSection() {
                   <div
                     key={index}
                     className={
-                      "relative bg-white w-[500px] min-h-[154px] rounded-3xl border p-4 gap-2 flex justify-between" +
+                      "relative bg-white w-[31.25rem] min-h-[9.625rem] rounded-3xl border p-4 gap-2 flex justify-between" +
                       (index < 3
                         ? " after:content after:inline-block after:h-8 after:w-1 after:bg-[#DBA806] after:absolute after:left-10 after:-z-10 after:-bottom-8 after:transform after:-translate-x-1/2"
                         : "")
-                    }
-                  >
+                    }>
                     <div>
                       <div className="border border-black flex items-center justify-center w-8 h-8 body-1-black bg-[#FFFEEE] rounded-full">
                         {index + 1}

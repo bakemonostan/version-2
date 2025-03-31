@@ -15,34 +15,34 @@
 /* Ensure Tailwind width classes work properly with Mantine modals */
 .override-mantine-modal {
   &.max-w-sm {
-    max-width: 384px !important;
+    max-width: 24rem !important;
   }
   &.max-w-md {
-    max-width: 448px !important;
+    max-width: 28rem !important;
   }
   &.max-w-lg {
-    max-width: 512px !important;
+    max-width: 32rem !important;
   }
   &.max-w-xl {
-    max-width: 576px !important;
+    max-width: 36rem !important;
   }
   &.max-w-2xl {
-    max-width: 672px !important;
+    max-width: 42rem !important;
   }
   &.max-w-3xl {
-    max-width: 768px !important;
+    max-width: 48rem !important;
   }
   &.max-w-4xl {
-    max-width: 896px !important;
+    max-width: 56rem !important;
   }
   &.max-w-5xl {
-    max-width: 1024px !important;
+    max-width: 64rem !important;
   }
   &.max-w-6xl {
-    max-width: 1152px !important;
+    max-width: 72rem !important;
   }
   &.max-w-7xl {
-    max-width: 1280px !important;
+    max-width: 80rem !important;
   }
   /* Support for explicit pixel widths */
   &[class*="max-w-["] {
@@ -60,7 +60,7 @@
   --leading-heading-3: 2.6rem;
   --text-heading-4: 1.25rem;
   --leading-heading-4: 1.575rem;
-  --text-heading-6: 0.875rem;
+  --text-heading-6: .875rem;
   --leading-heading-6: 1.103rem;
   --text-heading-alt: 1.5rem;
   --leading-heading-alt: 2.25rem;
@@ -68,7 +68,7 @@
   --leading-body-1: 1.8rem;
   --text-body-2: 1rem;
   --leading-body-2: 1.5rem;
-  --text-body-3: 0.875rem;
+  --text-body-3: .875rem;
   --leading-body-3: 1.225rem;
   --max-width-landing: 71rem;
   --text-button: 1rem;
@@ -113,7 +113,7 @@
   --ring: oklch(0.708 0 0);
   --cta-top: oklch(85.99% 0.0682 306.2);
   --cta-bottom: oklch(21.95% 0.0077 285.74);
-  --radius: 0.625rem;
+  --radius: .625rem;
 }
 
 .dark {
@@ -172,10 +172,10 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - .25rem);
+  --radius-md: calc(var(--radius) - .125rem);
   --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
+  --radius-xl: calc(var(--radius) + .25rem);
   --color-cta-top: var(--cta-top);
   --color-cta-bottom: var(--cta-bottom);
   --color-landing-bg: var(--landing-bg);
@@ -210,7 +210,7 @@
     @apply text-heading-4 leading-[1.25rem] font-bold;
   }
   .heading-6 {
-    @apply text-[14px] leading-0;
+    @apply text-[.875rem] leading-0;
   }
   .button-text {
     @apply text-button font-semibold leading-button;
@@ -231,7 +231,7 @@
     @apply flex justify-start items-center;
   }
   .body-1-medium {
-    @apply text-body-1 leading-[28.8px] font-normal;
+    @apply text-body-1 leading-[1.8rem] font-normal;
   }
   .body-2 {
     @apply leading-6 text-[1rem];
@@ -242,7 +242,7 @@
   }
 
   .body-4 {
-    @apply text-[12px];
+    @apply text-[.75rem];
   }
 
   .flex-center {
@@ -258,7 +258,7 @@
   }
 
   .gradient-border {
-    @apply relative border-0 data-[state=active]:shadow-none bg-origin-border bg-clip-padding p-[1px] rounded-full;
+    @apply relative border-0 data-[state=active]:shadow-none bg-origin-border bg-clip-padding p-[.0625rem] rounded-full;
     @apply data-[state=active]:bg-gradient-to-r data-[state=active]:from-[#FFCB4E] data-[state=active]:to-[#AD75E2] data-[state=inactive]:border data-[state=inactive]:border-border;
   }
 
@@ -320,7 +320,7 @@
 }
 
 .header-l {
-  @apply text-[30px];
+  @apply text-[1.875rem];
 }
 
 .header-3 {
@@ -338,7 +338,7 @@
 }
 
 .toast {
-  gap: 0.7rem !important;
+  gap: .7rem !important;
 }
 
 /* push the icon to the top of the container ie toast */
@@ -346,14 +346,14 @@
 }
 
 .toast-title {
-  font-size: 0.9rem;
-  line-height: 0.9rem;
+  font-size: .9rem;
+  line-height: .9rem;
   font-weight: 600 !important;
 }
 
 .toast-description {
-  font-size: 0.875rem;
-  line-height: 0.875rem;
+  font-size: .875rem;
+  line-height: .875rem;
   font-weight: 500 !important;
 }
 
@@ -373,19 +373,19 @@
 }
 
 ::-webkit-scrollbar {
-  width: 4px;
-  height: 4px;
+  width: .25rem;
+  height: .25rem;
   background-color: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
   background-color: #8f9dab;
-  border-radius: 6px;
+  border-radius: .375rem;
 }
 
 ::-webkit-scrollbar {
-  width: 4px;
-  height: 4px;
+  width: .25rem;
+  height: .25rem;
   background-color: transparent;
 }
 
@@ -395,7 +395,7 @@
 
 ::-webkit-scrollbar-thumb {
   background-color: #8f9dab;
-  border-radius: 6px;
+  border-radius: .375rem;
 }
 
 .multi-stop-gradient {

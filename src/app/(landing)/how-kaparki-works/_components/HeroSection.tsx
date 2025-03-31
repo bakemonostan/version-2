@@ -4,7 +4,7 @@ const HeroSection = ({ id }: { id: string }) => {
   return (
     <section className="p-[2px] sm:py-16 landing-container px-0" id={id}>
       <div className="p-[2px] bg-gradient-to-r from-white through-[#AD75E2] to-[#FFCB4E] rounded-3xl border-l-0">
-        <div className="relative w-full min-h-[32rem] flex flex-1 h-full sm:block p-3 py-10 rounded-3xl hero-image-2 bg-no-repeat bg-cover bg-center mx-auto justify-center items-center">
+        <div className="relative w-full min-h-[32rem] flex flex-1 h-full sm:block p-3 pt-[3.625rem] pb-12 rounded-3xl hero-image-2 bg-no-repeat bg-cover bg-center mx-auto justify-center items-center">
           <div className="absolute inset-0 bg-gradient-to-r from-white via-white/30 to-transparent rounded-3xl"></div>
           <div className="relative h-1/2">
             <div className="max-w-[500px]">

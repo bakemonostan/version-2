@@ -7,7 +7,7 @@ export default function HowKaparkiWorksPage() {
   return (
     <>
       <HeroSection id="hero" />
-        <GettingStartedSection />
+      <GettingStartedSection />
       <section className="sm:p-5 sm:space-y-10 mx-auto landing-container">
         <CarListing />
       </section>

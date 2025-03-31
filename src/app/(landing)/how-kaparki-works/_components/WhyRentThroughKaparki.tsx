@@ -5,7 +5,7 @@ import { Card, CardSection } from "@mantine/core";
 
 export default function WhyRentThroughKaparki() {
   return (
-    <section className="py-32">
+    <section className="py-[7.5rem]">
       <Shell>
         <div className="grid md:grid-cols-2 gap-8 items-center ">
           <div className="py-16">
