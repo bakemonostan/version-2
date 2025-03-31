@@ -327,7 +327,7 @@
 }
 
 .header-4 {
-  @apply text-heading-4 leading-0 font-bold;
+  @apply text-heading-4 leading-[1.25rem] font-bold;
 }
 
 .header-6 {

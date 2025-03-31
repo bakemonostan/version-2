@@ -5,7 +5,7 @@ import { Card, CardSection, Divider } from "@mantine/core";
 
 export default function WhyKaparki() {
   return (
-    <section className="py-16">
+    <section className="py-[120px]">
       <Shell>
         <div className="grid md:grid-cols-2 gap-8 items-center ">
           <div className="pb-16">
@@ -17,9 +17,9 @@ export default function WhyKaparki() {
           {WHY_RENT_ON_KAPARKI_DATA.map((card, index) => {
             const Icon = card.icon;
             return (
-              <Card key={index} bg="yellow-light.4">
-                <CardSection className="text-center p-8 space-y-6">
-                  <Icon className="mx-auto" />
+              <Card key={index} bg="yellow-light.4" h="363px">
+                <CardSection className="text-center p-8">
+                  <Icon className="mx-auto mb-6" />
                   <h4 className="heading-4 pb-4">{card.title}</h4>
                   <p className="body-1-medium">{card.description}</p>
                 </CardSection>
