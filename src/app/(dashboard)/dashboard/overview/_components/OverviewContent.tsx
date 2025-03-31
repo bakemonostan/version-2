@@ -7,13 +7,21 @@ import { getDashboardData } from "@/services/dashboard";
 import ErrorState from "../../_components/ErrorState";
 import OverviewSkeleton from "../../_components/skeletons/OverviewSkeleton";
 import { ArrowUpRight } from "lucide-react";
-      import { dashboardCardContent, DashboardData } from "@/contents/data";
+import { dashboardCardContent, DashboardData } from "@/contents/data";
+import { useUserStore } from "@/store/userStore";
 
 export default function OverviewContent() {
+  const { setUser } = useUserStore();
   const { data, isLoading, error } = useCustomQuery<DashboardData>(
     ["dashboard data"],
     getDashboardData
   );
+
+  React.useEffect(() => {
+    if (data) {
+      setUser(data);
+    }
+  }, [data, setUser]);
 
   if (error) {
     return <ErrorState message={error.message} />;

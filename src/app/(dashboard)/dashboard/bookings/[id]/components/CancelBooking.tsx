@@ -21,10 +21,8 @@ export default function CancelBooking({ id }: CancelBookingProps) {
 
   const handleCancel = async () => {
     try {
-      // Add the actual cancel booking API call here
       console.log("Cancelling booking: ", id);
       resetCancelBooking();
-      // Show success toast or redirect
     } catch (error) {
       console.error("Error cancelling booking", error);
       // Show error toast

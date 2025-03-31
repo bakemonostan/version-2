@@ -38,10 +38,10 @@ export default function MyAccountTabs() {
     ["user-details"],
     getUserDetails
   );
-  const { setUser } = useUserStore();
+  const { setDetails } = useUserStore();
   useEffect(() => {
     if (isSuccess && data?.data.data) {
-      setUser(data.data.data);
+      setDetails(data.data.data);
     }
   }, [isSuccess, data]);
 

@@ -59,7 +59,6 @@ export default function SignInForm() {
         toast.error("Sign in failed", {
           description: error.message,
         });
-        console.log(error);
       },
     });
   };

@@ -13,6 +13,7 @@ import { verifyToken } from "@/services/auth";
 import { Loader } from "@mantine/core";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
+import useInvalidateQuery from "@/hooks/mutations/useInvalidateQuery";
 
 const verifyTokenSchema = z.object({
   code: z
@@ -29,6 +30,7 @@ export type VerifyTokenFormValues = z.infer<typeof verifyTokenSchema>;
 
 export default function VerifyToken() {
   const { email, setCards } = useAuthStore();
+  const { refetchQuery } = useInvalidateQuery();
   const router = useRouter();
   const form = useForm<VerifyTokenFormValues>({
     resolver: zodResolver(verifyTokenSchema),
@@ -48,8 +50,13 @@ export default function VerifyToken() {
           toast.success("Login successful", {
             description: "Redirecting...",
           });
+
           router.push("/dashboard/overview");
           setCards("sign-in");
+          refetchQuery({ queryKey: ["dashboard data"] });
+          useAuthStore.setState({
+            isAuthenticated: true,
+          });
         },
         onError: (error) => {
           toast.error(error.message);

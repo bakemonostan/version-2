@@ -5,18 +5,18 @@ import { ProfileCarousel } from "@/app/(dashboard)/dashboard/my-account/_compone
 import { useModal } from "@/providers/ModalContext";
 
 export default function PersonalDetails() {
-  const { user } = useUserStore();
+  const { details } = useUserStore();
   const { openModal } = useModal();
-  console.log(user);
+  console.log(details);
   return (
     <div className="flex flex-col">
       <DetailsComponent
         title="Legal name"
-        subtitle={user?.legal_name}
+        subtitle={details?.legal_name}
       />
       <DetailsComponent
         title="Residential address"
-        subtitle={user?.address || "No address added"}
+        subtitle={details?.address || "No address added"}
         withLink={true}
         onAction={() => {
           openModal("edit-details", { modalType: "address" });
@@ -24,7 +24,7 @@ export default function PersonalDetails() {
       />
       <DetailsComponent
         title="Email address"
-        subtitle={user?.email}
+        subtitle={details?.email}
         withLink={true}
         onAction={() => {
           openModal("edit-details", { modalType: "email" });
@@ -33,7 +33,7 @@ export default function PersonalDetails() {
 
       <DetailsComponent
         title="Phone number"
-        subtitle={user?.telephone || "No phone number added"}
+        subtitle={details?.telephone || "No phone number added"}
         withLink={true}
         info="Your number will only be shared with someone you have a confirmed booking with."
         onAction={() => {

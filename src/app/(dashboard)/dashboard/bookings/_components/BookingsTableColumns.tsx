@@ -16,10 +16,10 @@ export const columns: ColumnDef<BookingsTableData>[] = [
         <img
           className="h-12 w-24 rounded-lg aspect-square object-cover"
           src={row.getValue("image")}
-          alt={row.original.vehicle.make}
+          alt={row.original.vehicle.title}
         />
         <p>
-          <span>{row.original.vehicle.make}</span>
+          <span>{row.original.vehicle.title}</span>
         </p>
       </div>
     ),
