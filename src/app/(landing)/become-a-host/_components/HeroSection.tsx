@@ -6,12 +6,12 @@ export default function HeroSection() {
   return (
     <section className="flex-1 flex-center bg-gradient-to-r from-[#AD75E2]/15 to-[#FFCB4E]/15 py-16">
       <Shell>
-        <div className="flex flex-col lg:flex-row items-center justify-between">
+        <div className="flex flex-col lg:grid lg:grid-cols-2 gap-[136px] items-center justify-between">
           <div className="w-full lg:w-[500px]">
             <h1 className="heading-hero-2 pb-6">
               Turn your vehicle into passive income!
             </h1>
-            <p className="body-1-medium">
+            <p className="body-1-medium text-black/80">
               List your car, camper, or specialty ride on Kaparki and start
               earning from people who need it.
             </p>

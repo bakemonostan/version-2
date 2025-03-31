@@ -7,7 +7,7 @@ import Link from "next/link";
 export default function LandingNavbar() {
   return (
     <header className="top-0 z-50 w-full p-5 bg-white border md:sticky md:py-5 opacity-90">
-      <nav className="mx-auto sm:max-w-[79.5rem] flex sm:flex-wrap items-center justify-between gap-10 sm:gap-5">
+      <nav className="mx-auto landing-container flex sm:flex-wrap items-center justify-between gap-10 sm:gap-5">
         <Link href="/">
           <LogoIcon />
         </Link>
