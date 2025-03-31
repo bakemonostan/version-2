@@ -1,4 +1,3 @@
-
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { useUserStore } from "@/store/userStore";
 import Image from "next/image";
@@ -6,11 +5,9 @@ import { Edit2Icon } from "lucide-react";
 import DetailsComponent from "./DetailsComponent";
 import { useModal } from "@/providers/ModalContext";
 
-
 export default function ProfileTab() {
-  const { user } = useUserStore();
+  const { details } = useUserStore();
   const { openModal } = useModal();
-
 
   const imgUrl =
     "https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80";
@@ -39,15 +36,14 @@ export default function ProfileTab() {
         <div className="py-1 flex items-center justify-center flex-col">
           <Avatar className="w-[121px] h-[121px] ">
             <AvatarImage
-              src={user?.picture || imgUrl}
+              src={details?.picture || imgUrl}
               alt="Profile"
             />
             <AvatarFallback>
-              {user?.legal_name?.charAt(0) || "U"}
+              {details?.legal_name?.charAt(0) || "U"}
             </AvatarFallback>
           </Avatar>
-          <div
-            className="bg-white rounded-full p-2 shadow-2xl relative -top-5 cursor-pointer">
+          <div className="bg-white rounded-full p-2 shadow-2xl relative -top-5 cursor-pointer">
             <p className="flex items-center gap-2 ">
               <span>
                 <Edit2Icon className="size-4" />
@@ -59,13 +55,13 @@ export default function ProfileTab() {
         <div className="w-full">
           <DetailsComponent
             title="ABOUT YOU"
-            subtitle={user?.bio || "Add your bio"}
+            subtitle={details?.bio || "Add your bio"}
             className="border-none"
             withLink
             isColumn
             linkText="Edit About Info"
             onAction={() => {
-              openModal("edit-bio", { bio: user?.bio });
+              openModal("edit-bio", { bio: details?.bio });
             }}
           />
         </div>
