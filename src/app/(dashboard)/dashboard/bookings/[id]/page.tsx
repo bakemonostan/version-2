@@ -11,8 +11,8 @@ import HeaderComponent from "../../_components/HeaderComponent";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 
-import CancelBooking from "./components/CancelBooking";
-import { useBookingStore } from "@/store/bookingStore";
+// import CancelBooking from "./components/CancelBooking";
+// import { useBookingStore } from "@/store/bookingStore";
 import BookingsCard from "./components/BookingsCard";
 import { BookingDetailsData } from "@/types/dashboard";
 import BookingStatusBar from "./components/BookingStatusBar";
@@ -25,16 +25,16 @@ import DashboardCardSkeleton from "../../_components/skeletons/DashboardCardSkel
 export default function BookingDetailsPage() {
   const params = useParams();
   const id = params.id as string;
-  const { setCancelBooking } = useBookingStore();
+  // const { setCancelBooking } = useBookingStore();
 
   const { data, isLoading } = useQuery({
     queryKey: ["booking", id],
     queryFn: () => getSingleBooking(id),
   });
 
-  const handleCancelClick = () => {
-    setCancelBooking(id);
-  };
+  // const handleCancelClick = () => {
+  //   setCancelBooking(id);
+  // };
 
   if (isLoading) {
     return (
@@ -146,7 +146,8 @@ export default function BookingDetailsPage() {
                     </span>
                     <span
                       className="font-medium cursor-pointer"
-                      onClick={handleCancelClick}>
+                      // onClick={handleCancelClick}>
+                      >
                       Cancel this booking
                     </span>
                   </p>
@@ -205,7 +206,7 @@ export default function BookingDetailsPage() {
           </div>
         </div>
       </div>
-      <CancelBooking id={id} />
+      {/* <CancelBooking id={id} /> */}
     </DashboardShell>
   );
 }

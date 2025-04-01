@@ -4,6 +4,10 @@ import { ListingsModal } from "@/app/(dashboard)/dashboard/listings/_components/
 import { EditBioModal } from "@/app/(dashboard)/dashboard/my-account/_components/EditBioModal";
 import EditDetailsModal from "@/app/(dashboard)/dashboard/my-account/_components/EditDetailsModal";
 import ListAVehicleAddressModal from "@/app/(list-a-vehicle)/list-a-vehicle/components/modals/ListAVehicleAddressModal";
+import VehicleTypeModal from "@/app/(list-a-vehicle)/list-a-vehicle/components/modals/VehicleTypeModal";
+import UnavailabilityPeriods from "@/app/(list-a-vehicle)/list-a-vehicle/components/UnavailabilityPeriods";
+import { PreviewSubmissionModal } from "@/app/(list-a-vehicle)/preview/components/PreviewSubmissionModal";
+
 export function ModalRegistry() {
   return (
     <>
@@ -11,6 +15,9 @@ export function ModalRegistry() {
       <EditBioModal />
       <EditDetailsModal />
       <ListAVehicleAddressModal />
+      <VehicleTypeModal />
+      <UnavailabilityPeriods />
+      <PreviewSubmissionModal />
     </>
   );
 }

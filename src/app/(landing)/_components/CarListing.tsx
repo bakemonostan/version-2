@@ -27,7 +27,6 @@ export default function CarListing() {
 
   const route = usePathname();
 
-  console.log(route);
   return (
     <>
       {route !== "/how-kaparki-works" && (

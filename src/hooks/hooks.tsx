@@ -14,8 +14,10 @@ export function useCategories() {
     categoriesQueryOptions
   );
   const categoryNames = categories.data?.data.map((item) => item.name);
+  const categoryData = categories.data?.data;
   return {
     categoryNames,
+    categoryData,
     isLoading: categories.isLoading,
   };
 }
@@ -38,10 +40,10 @@ export function useGetSubcategoriesByCategoryId(categoryId: string) {
     getCategories,
     categoriesQueryOptions
   );
-  const category = categories.data?.data.find((item) => item.id === categoryId);
-  const subCategoryFields = category?.sub_categories.map((item) => item); 
-  const subCategories = category?.sub_categories.map((item) => item.name);
-  const subcategoryImages = category?.sub_categories.map((item) => item.image);
+  const category = categories.data?.data?.find((item) => item.id === categoryId);
+  const subCategoryFields = category?.sub_categories?.map((item) => item); 
+  const subCategories = category?.sub_categories?.map((item) => item.name);
+  const subcategoryImages = category?.sub_categories?.map((item) => item.image);
   return {
     subCategories,
     subcategoryImages,
@@ -65,3 +67,4 @@ export function useGetSubcategoryId(
   );
   return subCategory?.id;
 }
+

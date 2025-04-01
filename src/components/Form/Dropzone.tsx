@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 import { ImageIcon, XCircleIcon } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
-import Dropzone   from "react-dropzone";
+import Dropzone from "react-dropzone";
 
 const ImagePreview = ({
   url,
@@ -16,14 +16,13 @@ const ImagePreview = ({
   <div className="relative aspect-square">
     <button
       className="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2"
-      onClick={onRemove}
-    >
+      onClick={onRemove}>
       <XCircleIcon className="h-5 w-5 fill-primary text-primary-foreground" />
     </button>
     <Image
       src={url}
-      height={500}
-      width={500}
+      height={199.62}
+      width={187.73}
       alt=""
       className="border border-border h-full w-full rounded-md object-cover"
     />
@@ -54,8 +53,7 @@ export default function DropzoneComponent() {
             accept={{
               "image/png": [".png", ".jpg", ".jpeg", ".webp"],
             }}
-            maxFiles={1}
-          >
+            maxFiles={1}>
             {({
               getRootProps,
               getInputProps,
@@ -72,10 +70,15 @@ export default function DropzoneComponent() {
                     "border-destructive bg-destructive/20":
                       isDragActive && isDragReject,
                   }
-                )}
-              >
-                <input {...getInputProps()} id="profile" />
-                <ImageIcon className="h-16 w-16" strokeWidth={1.25} />
+                )}>
+                <input
+                  {...getInputProps()}
+                  id="profile"
+                />
+                <ImageIcon
+                  className="h-16 w-16"
+                  strokeWidth={1.25}
+                />
               </div>
             )}
           </Dropzone>

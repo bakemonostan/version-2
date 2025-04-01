@@ -5,12 +5,72 @@ import SignInForm from "./SignInForm";
 import SignUpForm from "./SignUpForm";
 import VerifyToken from "./VerifyToken";
 import { useAuthStore } from "@/store/authStore";
+import { useGoogleLogin } from "@react-oauth/google";
+import { toast } from "sonner";
+import useCustomMutation from "@/hooks/mutations/useCusotmMutation";
+import { useRouter } from "next/navigation";
+
+interface GoogleResponse {
+  email: string;
+  name: string;
+  picture: string;
+}
+
+interface ErrorResponse {
+  message: string;
+}
 
 export default function SignIn() {
-  const { currentCard, headerText, resetCards } = useAuthStore();
+  const { currentCard, headerText, resetCards, setEmail, setCards } = useAuthStore();
+  const router = useRouter();
   const reset = () => {
     resetCards();
   };
+
+  const { mutate } = useCustomMutation<GoogleResponse, string>(
+    async (token: string) => {
+      const response = await fetch('/api/auth/google', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ token }),
+      });
+      
+      if (!response.ok) {
+        throw new Error('Failed to login with Google');
+      }
+      
+      return response.json();
+    }
+  );
+
+  const login = useGoogleLogin({
+    onSuccess: (response) => {
+      if ('access_token' in response) {
+        mutate(response.access_token, {
+          onSuccess: (data: GoogleResponse) => {
+            setEmail(data.email);
+            toast.success("Login successful", {
+              description: "Please verify your email to complete login",
+            });
+            setCards("verify-token");
+            router.push(`/auth?email=${data.email}`);
+          },
+          onError: (error: ErrorResponse) => {
+            toast.error("Google login failed", {
+              description: error.message,
+            });
+          }
+        });
+      }
+    },
+    onError: () => {
+      toast.error("Google login failed", {
+        description: "Failed to login with Google",
+      });
+    },
+  });
 
   return (
     <>
@@ -37,7 +97,9 @@ export default function SignIn() {
           <div className="w-full h-[1px] bg-gray-200 flex-shrink"></div>
         </div>
         <div className="flex-center gap-4 border border-gray-200 rounded-xl w-max mx-auto p-5 mb-6">
-          <GoogleIcon />
+          <div onClick={() => login()} className="cursor-pointer">
+            <GoogleIcon />
+          </div>
         </div>
         <div className="text-body-3 leading-body-3 text-gray-500 text-center">
           <p>

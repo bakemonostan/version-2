@@ -15,20 +15,23 @@ import useCustomQuery from "@/hooks/mutations/useCustomQuery";
 export const getCategories = async () => {
   const res = await api.get<ApiResponse<Catergory[]>>("/dropdown/category");
   const data = res.data;
-  console.log(data.data);
   return data;
 };
 
 
 export const getTypes = async (categoryID: string | undefined) => {
-  return api.get<ApiResponse<TypeData[]>>(`/dropdown/type/${categoryID}`);
+  const data = await api.get<ApiResponse<TypeData[]>>(`/dropdown/type/${categoryID}`);
+  return data.data.data;
 };
 
 export const getGearboxDropdown = async () => {
-  return api.get<ApiResponse<DropDataType[]>>(`/dropdown/gearbox`);
+  const data = await api.get<ApiResponse<DropDataType[]>>(`/dropdown/gearbox`);
+  return data.data.data;
 };
+
 export const getFuelTypesDropdown = async () => {
-  return api.get<ApiResponse<DropDataType[]>>(`/dropdown/fuel-type`);
+  const data = await api.get<ApiResponse<DropDataType[]>>(`/dropdown/fuel-type`);
+  return data.data.data;
 };
 
 export const getVehicleConditionDropdown = async () => {
@@ -36,18 +39,21 @@ export const getVehicleConditionDropdown = async () => {
 };
 
 export const getTransmissionDropdown = async () => {
-  return api.get<ApiResponse<DropDataType[]>>(`/dropdown/transmission`);
+  const data = await api.get<ApiResponse<DropDataType[]>>(`/dropdown/transmission`);
+  return data.data.data;
 };
 export const getVehicleFeatures = async (id: string) => {
   return api.get<ApiResponse<SubCategories[]>>(`/dropdown/feature/${id}`);
 };
 
 export const getMakes = async (typeId: string | undefined) => {
-  return api.get<ApiResponse<Make[]>>(`/dropdown/make/${typeId}`);
+  const data = await api.get<ApiResponse<Make[]>>(`/dropdown/make/${typeId}`);
+  return data.data.data;
 };
 
 export const getModels = async (typeId: string | undefined) => {
-  return api.get<ApiResponse<Model[]>>(`/dropdown/model/${typeId}`);
+  const data = await api.get<ApiResponse<Model[]>>(`/dropdown/model/${typeId}`);
+  return data.data.data;
 };
 
 export const getEquippedWith = async () => {
@@ -62,6 +68,7 @@ export function useTypes(categoryId: string) {
   return useCustomQuery(["types", categoryId], () => getTypes(categoryId), {
     enabled: !!categoryId,
   });
+
 }
 
 export function useMakes(typeId: string) {
@@ -74,4 +81,25 @@ export function useModels(typeId: string) {
   return useCustomQuery(["models", typeId], () => getModels(typeId), {
     enabled: !!typeId,
   });
+  
 }
+
+export function useGearboxDropdown() {
+  return useCustomQuery(["gearbox"], () => getGearboxDropdown(), {
+    enabled: true,
+  });
+}
+
+export function useTransmissionDropdown() {
+  return useCustomQuery(["transmission"], () => getTransmissionDropdown(), {
+    enabled: true,
+  });
+}
+
+
+export function useFuelTypeDropdown() {
+  return useCustomQuery(["fuel-type"], () => getFuelTypesDropdown(), {
+    enabled: true,
+  });
+}
+

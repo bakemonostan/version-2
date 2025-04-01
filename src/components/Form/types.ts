@@ -8,6 +8,7 @@ export interface CustomFormFieldProps<T extends FieldValues = FieldValues> exten
     label: string;
     placeholder?: string;
     isTextArea?: boolean;
+    type?: string;
   };
 
 export interface CustomFormSelectProps<T extends FieldValues = FieldValues> extends 
@@ -18,6 +19,8 @@ export interface CustomFormSelectProps<T extends FieldValues = FieldValues> exte
     labelText?: string;
     placeholder?: string;
     disabled?: boolean;
+    className?: string;
+    triggerClassName?: string;
   };
 
 export interface CustomFormCheckboxProps<T extends FieldValues = FieldValues> extends 
@@ -26,12 +29,10 @@ export interface CustomFormCheckboxProps<T extends FieldValues = FieldValues> ex
     control: Control<T>;
     labelText?: string;
   };
-
-export interface CustomFormRadioProps<T extends FieldValues = FieldValues> extends 
+  export interface CustomFormRadioProps<T extends FieldValues = FieldValues> extends 
   Omit<InputHTMLAttributes<HTMLInputElement>, 'name' | 'type'> {
     name: Path<T>;
     control: Control<T>;
     labelText?: string;
     options: string[];
   };
-  

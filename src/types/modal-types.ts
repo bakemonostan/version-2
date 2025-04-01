@@ -3,7 +3,10 @@ export type AppModalIds =
   | "listings"
   | "edit-bio"
   | "edit-details"
-  | "address-modal";
+  | "address-modal"
+  | "vehicle-type-modal"
+  | "unavailability-modal"
+  | "preview-submission-modal";
 
 export type ModalId = AppModalIds;
 
@@ -23,15 +26,22 @@ export interface EditDetailsModalParams {
   modalType: "address" | "email" | "telephone";
 }
 
+export interface PreviewSubmissionModalParams {
+  title: string;
+}
+
 // Map each modal ID to its parameter type
 export interface ModalParamsMap {
   // Modals with specific params
   "listings": ListingsModalParams;
   "edit-bio": EditBioModalParams;
   "edit-details": EditDetailsModalParams;
+  "preview-submission-modal": PreviewSubmissionModalParams;
   
   // Modals without specific params default to empty object
   "address-modal": DefaultParams;
+  "vehicle-type-modal": DefaultParams;
+  "unavailability-modal": DefaultParams;
 }
 
 // Helper type to get params for a specific modal ID

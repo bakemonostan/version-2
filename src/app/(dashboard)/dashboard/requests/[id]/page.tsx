@@ -36,7 +36,6 @@ export default function RequestPage({ params }: RequestPageProps) {
     );
   }
 
-  console.log(data);
   return (
     <DashboardShell card={<OverviewSideCard />}>
       <div className="p-4">

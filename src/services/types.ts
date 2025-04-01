@@ -59,7 +59,7 @@ export interface Model {
   make: Make
 }
 
-export type DropDataType = string[]
+export type DropDataType = string
 
 export interface Features extends Catergory {
   id: string

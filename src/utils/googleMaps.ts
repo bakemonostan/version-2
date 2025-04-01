@@ -3,6 +3,7 @@
  */
 
 import { toast } from "sonner";
+import { Loader } from "@googlemaps/js-api-loader";
 
 type GeocodeResult = {
   isValid: boolean;
@@ -16,44 +17,20 @@ type GeocodeResult = {
 
 /**
  * Load Google Maps API script
- * @param apiKey - Google Maps API key
- * @param callback - Optional callback function to execute when API is loaded
  * @returns Promise that resolves when the API is loaded
  */
-export const loadGoogleMapsAPI = (): Promise<void> => {
-  return new Promise((resolve, reject) => {
-    if (typeof window !== "undefined" && window.google && window.google.maps) {
-      console.log("Google Maps API already loaded");
-      resolve();
-      return;
-    }
+export const loadGoogleMapsAPI = async (): Promise<void> => {
+  try {
+    const loader = new Loader({
+      apiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || "",
+      version: "weekly",
+      libraries: ["places"],
+    });
 
-    const existingScript = document.querySelector(
-      'script[src*="maps.googleapis.com/maps/api"]'
-    );
-    if (existingScript) {
-      console.log("Google Maps API script already loading");
-      existingScript.addEventListener("load", () => resolve());
-      existingScript.addEventListener("error", (e) => reject(e));
-      return;
-    }
-
-    const script = document.createElement("script");
-    script.src = `https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}&libraries=places`;
-    script.async = true;
-    script.defer = true;
-
-    script.onload = () => {
-      console.log("Google Maps API loaded successfully");
-      resolve();
-    };
-
-    script.onerror = (e) => {
-      reject(e);
-    };
-
-    document.head.appendChild(script);
-  });
+    await loader.load();
+  } catch (error) {
+    throw error;
+  }
 };
 
 /**

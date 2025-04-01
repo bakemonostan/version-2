@@ -1,17 +1,18 @@
 import { create } from 'zustand';
+import { VehicleData } from '@/app/(list-a-vehicle)/list-a-vehicle/types';
+import { persist, createJSONStorage } from 'zustand/middleware';
 
 interface BookingStore {
-  isCancelModalOpen: boolean;
-  currentBookingId: string | null;
-  toggleCancelModal: () => void;
-  setCancelBooking: (id: string) => void;
-  resetCancelBooking: () => void;
+  vehicleData: VehicleData | null;
+  setVehicleData: (data: VehicleData) => void;
 }
 
-export const useBookingStore = create<BookingStore>((set) => ({
-  isCancelModalOpen: false,
-  currentBookingId: null,
-  toggleCancelModal: () => set((state) => ({ isCancelModalOpen: !state.isCancelModalOpen })),
-  setCancelBooking: (id: string) => set({ currentBookingId: id, isCancelModalOpen: true }),
-  resetCancelBooking: () => set({ isCancelModalOpen: false, currentBookingId: null }),
-})); 
+export const useBookingStore = create<BookingStore>()(
+  persist((set) => ({
+    vehicleData: null,
+    setVehicleData: (data: VehicleData) => set({ vehicleData: data }),
+  }), {
+    name: 'vehicle-listing-data',
+    storage: createJSONStorage(() => localStorage),
+  })
+); 

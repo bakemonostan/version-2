@@ -1,6 +1,5 @@
 "use client";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
-import { useIsFetching } from "@tanstack/react-query";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -18,10 +17,9 @@ import { useRouter } from "next/navigation";
 
 export default function NavDropdownMenu() {
   const { user, setUser } = useUserStore();
-  const isFetching = useIsFetching();
   const menuItems = user ? DropdownMenuItems : DropdownMenuItemsTwo;
   const router = useRouter();
-  if (isFetching === 1 || !user) {
+  if (!user) {
     return (
       <div className="flex items-center gap-3 bg-black/10 rounded-full w-44 h-12 cursor-pointer">
         <Skeleton className="w-8 h-8 rounded-full" />

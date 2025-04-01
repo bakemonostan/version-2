@@ -23,8 +23,6 @@ export default function RequestsPage() {
       </DashboardShell>
     );
   }
-
-  console.log(TableData);
   return (
     <DashboardShell card={<OverviewSideCard />}>
       <div className="p-4">

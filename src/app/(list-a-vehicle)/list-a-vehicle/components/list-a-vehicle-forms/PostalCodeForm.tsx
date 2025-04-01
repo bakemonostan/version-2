@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 import { TextInput } from "@/components/Form/FormFields";
 import { Form } from "@/components/ui/form";
@@ -47,18 +48,13 @@ export default function PostalCodeForm() {
     const processPostalCode = async () => {
       if (debouncedPostalCode) {
         setIsLoading(true);
-        console.log("Debounced postal code:", debouncedPostalCode);
 
-        // Update the store with the postal code
         setPostalCode(debouncedPostalCode);
 
-        // Fetch and extract address data
         const data = await fetchAddressFromPostalCode(debouncedPostalCode);
 
         if (data) {
-          console.log("Address data retrieved:", data);
           setAddress(data);
-          
           if (!data.isError) {
             toast.success("Address found", {
               description: `Postal code: ${debouncedPostalCode} is valid, please continue to the next step`,

@@ -7,7 +7,6 @@ import { useModal } from "@/providers/ModalContext";
 export default function PersonalDetails() {
   const { details } = useUserStore();
   const { openModal } = useModal();
-  console.log(details);
   return (
     <div className="flex flex-col">
       <DetailsComponent

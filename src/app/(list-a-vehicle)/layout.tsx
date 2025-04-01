@@ -9,7 +9,7 @@ export default function ListAVehicleLayout({
   return (
     <>
       <LandingNavbar />
-      <main className="bg-black/5 h-screen">{children}</main>
+      <main className="bg-black/5 min-h-screen overflow-y-auto">{children}</main>
     </>
   );
 }

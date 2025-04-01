@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Modal } from "@/components/ui/modal";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { AddressSchema } from "../../schema";
@@ -12,10 +13,12 @@ import MapComponent from "../MapComponent";
 import { useModal } from "@/providers/ModalContext";
 import { fetchAddressFromPostalCode } from "../../utils/addressUtils";
 import { useDebouncedValue } from "@mantine/hooks";
-
+import { AddressFormTextInputs } from "../../types";
+import { useRouter } from "next/navigation";
 export default function ListAVehicleAddressModal() {
   const { address, setAddress, toggleMap, setToggleMap, setPostalCode } =
     useVehicleListingStore();
+  const router = useRouter();
   const { closeModal } = useModal();
   const [isLoading, setIsLoading] = useState(false);
 
@@ -98,6 +101,7 @@ export default function ListAVehicleAddressModal() {
       country: form.getValues("country"),
       coordinates: address.coordinates
     });
+    router.push("/form");
   };
 
   return (
@@ -122,34 +126,15 @@ export default function ListAVehicleAddressModal() {
               disabled={isLoading}
             />
             <div className="grid grid-cols-2 gap-2 pt-4">
-              <TextInput
-                label="City"
-                name="city"
-                placeholder="City"
-                control={form.control}
-                disabled={isLoading}
-              />
-              <TextInput
-                label="State"
-                name="state"
-                placeholder="State"
-                control={form.control}
-                disabled={isLoading}
-              />
-              <TextInput
-                label="Postal Code"
-                name="postal_code"
-                placeholder="e.g 129182"
-                control={form.control}
-                disabled={isLoading}
-              />
-              <TextInput
-                label="Country"
-                name="country"
-                placeholder="Enter your country"
-                control={form.control}
-                disabled={isLoading}
-              />
+              {AddressFormTextInputs.map((input) => (
+                <TextInput
+                  key={input.name}
+                  label={input.label}
+                  name={input.name as keyof AddressSchemaType}
+                  control={form.control}
+                  disabled={isLoading}
+                />
+              ))}
             </div>
             <div className="flex pt-4">
               <Button

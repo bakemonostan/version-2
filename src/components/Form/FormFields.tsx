@@ -6,7 +6,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Checkbox, Slider, Switch, Textarea } from "@mantine/core";
+import { Checkbox, Slider, Switch } from "@mantine/core";
 import {
   CustomFormCheckboxProps,
   CustomFormFieldProps,
@@ -25,6 +25,10 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { cn } from "@/lib/utils";
+import { Euro } from "lucide-react";
+import { Textarea } from "../ui/textarea";
+
 type CustomFormSliderProps<T extends FieldValues = FieldValues> = {
   name: Path<T>;
   control: Control<T>;
@@ -35,11 +39,52 @@ type CustomFormSliderProps<T extends FieldValues = FieldValues> = {
   defaultValue?: number;
 };
 
+export function NumberInputWithCurrency<T extends FieldValues = FieldValues>({
+  name,
+  control,
+  label,
+  labelClass = "",
+  placeholder = "0",
+}: {
+  name: Path<T>;
+  control: Control<T>;
+  label: string;
+  labelClass?: string;
+  placeholder?: string;
+}) {
+  return (
+    <FormField
+      control={control}
+      name={name}
+      render={({ field }) => (
+        <FormItem className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 items-center space-y-0 w-full">
+          <FormLabel className={cn(labelClass)}>{label}</FormLabel>
+          <FormControl>
+            <div className="relative">
+              <Euro className="absolute rounded-s-lg text-black/40 p-3 top-1/2 -translate-y-1/2 bg-black/5 h-full w-10" />
+              <Input
+                type="number"
+                className="pl-12 text-right"
+                placeholder={placeholder}
+                {...field}
+                onChange={(e) => field.onChange(Number(e.target.value))}
+                value={field.value || ""}
+              />
+            </div>
+          </FormControl>
+          <FormMessage className="p-0" />
+        </FormItem>
+      )}
+    />
+  );
+}
+
 export function TextInput<T extends FieldValues = FieldValues>({
   name,
   control,
   label,
   placeholder,
+  type, 
   isTextArea = false,
 }: CustomFormFieldProps<T>) {
   return (
@@ -53,13 +98,24 @@ export function TextInput<T extends FieldValues = FieldValues>({
             {isTextArea ? (
               <Textarea
                 {...field}
+                className="h-[5.625rem]"
                 placeholder={placeholder}
+                value={field.value || ""}
               />
             ) : (
               <Input
+                type={type}
                 className="shadow-none active:shadow-none focus:shadow-none rounded-sm"
                 {...field}
                 placeholder={placeholder}
+                value={field.value || ""}
+                onChange={(e) => {
+                  if (type === "number") {
+                    field.onChange(e.target.value === "" ? "" : Number(e.target.value));
+                  } else {
+                    field.onChange(e.target.value);
+                  }
+                }}
               />
             )}
           </FormControl>
@@ -83,17 +139,19 @@ export function SelectInput<T extends FieldValues = FieldValues>({
       control={control}
       name={name}
       render={({ field }) => (
-        <FormItem>
+        <FormItem
+          className={cn("w-full space-y-0", props.className)}
+        >
           <FormLabel>{labelText}</FormLabel>
           <Select
+            value={field.value}
             onValueChange={field.onChange}
-            defaultValue={field.value}
-            disabled={props.disabled}>
+            disabled={props.disabled}
+            
+            >
             <FormControl>
-              <SelectTrigger className="w-full border-0 pl-0">
-                <SelectValue placeholder={placeholder}>
-                  {field.value}
-                </SelectValue>
+              <SelectTrigger className={cn("w-full py-2 px-3 shadow-none", props.triggerClassName)}>
+                <SelectValue placeholder={placeholder} className="uppercase truncate " />
               </SelectTrigger>
             </FormControl>
             <SelectContent>
@@ -148,23 +206,31 @@ export function RadioInput<T extends FieldValues = FieldValues>({
       name={name}
       render={({ field }) => (
         <FormItem>
-          <FormLabel className="capitalize">{labelText}</FormLabel>
+          <FormLabel className="capitalize font-medium">{labelText}</FormLabel>
           <FormControl>
             <RadioGroup
               onValueChange={field.onChange}
               defaultValue={field.value}
-              value={field.value}>
-              {options.map((option) => (
-                <div
-                  key={option}
-                  className="flex items-center space-x-2">
-                  <RadioGroupItem
-                    value={option}
-                    id={option}
-                  />
-                  <Label htmlFor={option}>{option}</Label>
-                </div>
-              ))}
+              value={field.value}
+              className="flex gap-4">
+              {options.map((option) => {
+                const id = `${name}-${option}`;
+                return (
+                  <div
+                    key={id}
+                    className="flex items-center space-x-2">
+                    <RadioGroupItem
+                      value={option}
+                      id={id}
+                    />
+                    <Label 
+                      htmlFor={id} 
+                      className="cursor-pointer capitalize">
+                      {option === 'true' ? 'Yes' : option === 'false' ? 'No' : option}
+                    </Label>
+                  </div>
+                );
+              })}
             </RadioGroup>
           </FormControl>
           <FormMessage />

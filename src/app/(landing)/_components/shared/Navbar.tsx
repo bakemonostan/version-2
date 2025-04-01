@@ -22,6 +22,7 @@ export default function LandingNavbar() {
           <div className="px-2">
           <Button
               variant="outline"
+              color="black"
               className="h-10 rounded-full border-black/80 active:bg-black/10 active:translate-y-1 transition-all active:duration-300">
               <Link href="/list-a-vehicle" className="px-2 ">Start earning on Kaparki</Link>
             </Button>
