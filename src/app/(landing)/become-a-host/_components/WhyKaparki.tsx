@@ -5,7 +5,7 @@ import { Card, CardSection, Divider } from "@mantine/core";
 
 export default function WhyKaparki() {
   return (
-    <section className="py-[120px]">
+    <section className="py-[120px] px-4 md:px-0">
       <Shell>
         <div className="grid md:grid-cols-2 gap-8 items-center ">
           <div className="pb-16">

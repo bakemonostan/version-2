@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 
 export default function BuiltForHosts() {
   return (
-    <section className="py-[120px]">
+    <section className="py-[120px] px-4 md:px-0">
       <Shell>
         <p className="heading-3 text-center pb-16">Built for hosts like you</p>
         <div className="grid grid-cols-2 gap-y-16 gap-x-[120px]">

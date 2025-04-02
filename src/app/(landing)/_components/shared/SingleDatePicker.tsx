@@ -43,6 +43,7 @@ interface SingleDatePickerProps<T extends FieldValues> {
   className?: string;
   buttonClassName?: string;
   calendarClassName?: string;
+  placeholderClassName?: string;
   popoverContentClassName?: string;
   showFormMessage?: boolean;
 }
@@ -55,6 +56,7 @@ export function SingleDatePicker<T extends FieldValues>({
   disabled,
   className,
   buttonClassName,
+  placeholderClassName,
   calendarClassName,
   popoverContentClassName,
   showFormMessage = true,
@@ -90,7 +92,10 @@ export function SingleDatePicker<T extends FieldValues>({
                     {field.value ? (
                       format(field.value, "PPP")
                     ) : (
-                      <span className="p-2">{placeholder || "Select date"}</span>
+                      <span className={cn(
+                        "p-2",
+                        placeholderClassName
+                      )}>{placeholder || "Select date"}</span>
                     )}
                   </div>
                 </Button>

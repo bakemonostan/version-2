@@ -89,6 +89,7 @@ export default function HeroSearchComponent(props: props) {
                   name="rentalDateFrom"
                   label="From"
                   placeholder="Start date"
+                  placeholderClassName="px-0"
                   buttonClassName="text-left border-0 shadow-none hover:bg-transparent py-0  h-auto"
                   popoverContentClassName="z-[100]"
                 />
@@ -99,6 +100,7 @@ export default function HeroSearchComponent(props: props) {
                 control={form.control}
                 name="rentalDateTo"
                 label="To"
+                placeholderClassName="px-0"
                 placeholder="End date"
                 buttonClassName="text-left border-0 shadow-none hover:bg-transparent py-0  h-auto"
                 popoverContentClassName="z-[100]"

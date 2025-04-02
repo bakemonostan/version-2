@@ -5,11 +5,11 @@ import Link from "next/link";
 
 export default function EarnMoneySection() {
   return (
-    <section className="relative overflow-hidden py-[120px]">
+    <section className="relative overflow-hidden py-[120px] px-4 md:px-0">
       <Shell>
-        <div className="flex flex-col lg:grid lg:grid-cols-2 items-center gap-[136px]">
+        <div className="flex flex-col md:grid md:grid-cols-2 items-center gap-[136px]">
           <div className="flex flex-col gap-6">
-            <h3 className="heading-3 ">
+            <h3 className="heading-3 text-center sm:text-left">
               Earn money while others drive your vehicle!
             </h3>
 
@@ -30,7 +30,7 @@ export default function EarnMoneySection() {
               ))}
             </div>
 
-            <div className="flex gap-4 mt-4">
+            <div className="flex gap-4 mt-4 justify-center sm:justify-start">
               <Button
                 variant="cta"
                 className="w-max">
