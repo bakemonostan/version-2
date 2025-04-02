@@ -8,6 +8,7 @@ import VehicleTypeModal from "@/app/(list-a-vehicle)/list-a-vehicle/components/m
 import UnavailabilityPeriods from "@/app/(list-a-vehicle)/list-a-vehicle/components/UnavailabilityPeriods";
 import { PreviewSubmissionModal } from "@/app/(list-a-vehicle)/preview/components/PreviewSubmissionModal";
 import { HeroSearchModal } from "@/app/(landing)/_components/home/HeroSearchModal";
+import AllVehiclesFilterModal from "@/app/(all-vehicles)/_components/AllVehiclesFilterModal";
 
 export function ModalRegistry() {
   return (
@@ -20,6 +21,7 @@ export function ModalRegistry() {
       <UnavailabilityPeriods />
       <PreviewSubmissionModal />
       <HeroSearchModal />
+      <AllVehiclesFilterModal />
     </>
   );
 }

@@ -291,7 +291,8 @@ export function SliderInput<T extends FieldValues = FieldValues>({
                 min={min}
                 max={max}
                 step={step}
-                color="yellow.4"
+                color="black"
+                
               />
               <div className="flex justify-between text-xs text-muted-foreground">
                 <span>{field.value || defaultValue}</span>

@@ -18,12 +18,19 @@ import {
   FormValues,
 } from "@/schemas/hero-search-component";
 import { SingleDatePicker } from "./SingleDatePicker";
+import { usePathname, useRouter } from "next/navigation";
+import { useBookingStore } from "@/store/bookingStore";
 
 interface props extends React.HTMLProps<HTMLDivElement> {
   className?: string;
 }
 
 export default function HeroSearchComponent(props: props) {
+  const pathname = usePathname();
+  const router = useRouter();
+  const setSearchParams = useBookingStore((state) => state.setSearchParams);
+  const isAllVehiclesRoute = pathname.includes("/all-vehicles");
+  
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: DEFAULT_FORM_VALUES,
@@ -40,17 +47,23 @@ export default function HeroSearchComponent(props: props) {
   );
 
   const onSubmit = (data: FormValues) => {
-    console.log("Form data:", {
-      category: categoryId,
-      subCatergory: subCategoryId,
-      rental_date_from: formatDate(data.rentalDateFrom),
-      rental_date_to: formatDate(data.rentalDateTo),
+    // Save search params to the store
+    setSearchParams({
+      categoryId: categoryId,
+      subCategoryId: subCategoryId,
+      rentalDateFrom: data.rentalDateFrom ? formatDate(data.rentalDateFrom) : null,
+      rentalDateTo: data.rentalDateTo ? formatDate(data.rentalDateTo) : null,
     });
+    
+    // Redirect to all-vehicles page if not already there
+    if (!isAllVehiclesRoute) {
+      router.push("/all-vehicles");
+    }
   };
 
   return (
     <div
-      className="mx-auto max-w-4xl"
+      className={`mx-auto ${isAllVehiclesRoute ? "max-w-[1080px]" : "max-w-4xl"}`}
       {...props}>
       <Form {...form}>
         <form

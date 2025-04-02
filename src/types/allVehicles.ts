@@ -1,4 +1,4 @@
-interface VehicleImage {
+export interface VehicleImage {
   id: string
   image: string
   vehicle_id: string
@@ -7,12 +7,12 @@ interface VehicleImage {
   deleted_at: string | null
 }
 
-interface UnavailabilityPeriod {
+export interface UnavailabilityPeriod {
   to: string
   from: string
 }
 
-interface Availability {
+export interface Availability {
   id: string
   vehicle_id: string
   travel_abroad_allowed: boolean | null
@@ -22,7 +22,7 @@ interface Availability {
   deleted_at: string | null
 }
 
-interface Vehicle {
+export interface Vehicle {
   id: string
   make: string
   title: string
@@ -42,13 +42,13 @@ interface Vehicle {
   availability: Availability
 }
 
-interface Link {
+export interface Link {
   url: string | null
   label: string
   active: boolean
 }
 
-interface Meta {
+export interface Meta {
   current_page: number
   from: number
   last_page: number

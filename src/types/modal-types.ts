@@ -7,7 +7,8 @@ export type AppModalIds =
   | "vehicle-type-modal"
   | "unavailability-modal"
   | "preview-submission-modal"
-  | "hero-search-modal";
+  | "hero-search-modal"
+  | "vehicles-filter-modal";
 
 export type ModalId = AppModalIds;
 
@@ -43,6 +44,8 @@ export interface ModalParamsMap {
   "address-modal": DefaultParams;
   "vehicle-type-modal": DefaultParams;
   "unavailability-modal": DefaultParams;
+  "hero-search-modal": DefaultParams;
+  "vehicles-filter-modal": DefaultParams;
 }
 
 // Helper type to get params for a specific modal ID

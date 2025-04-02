@@ -48,6 +48,7 @@ export default function VehicleTypeModal() {
 
   const { subCategories, subcategoriesLoading } =
     useGetSubcategoriesByCategoryId(categoryId()!);
+    
   function categoryId() {
     if (!selectedVehicleType) return null;
     else {

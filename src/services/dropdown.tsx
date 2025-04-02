@@ -35,8 +35,15 @@ export const getFuelTypesDropdown = async () => {
 };
 
 export const getVehicleConditionDropdown = async () => {
-  return api.get<ApiResponse<DropDataType[]>>(`/dropdown/conditions`);
+  const data = await api.get<ApiResponse<DropDataType[]>>(`/dropdown/conditions`);
+  return data.data.data;
 };
+
+export function useVehicleConditionDropdown() {
+  return useCustomQuery(["vehicle-condition"], () => getVehicleConditionDropdown(), {
+    enabled: true,
+  });
+}
 
 export const getTransmissionDropdown = async () => {
   const data = await api.get<ApiResponse<DropDataType[]>>(`/dropdown/transmission`);
