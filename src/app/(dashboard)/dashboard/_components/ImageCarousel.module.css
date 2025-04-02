@@ -7,3 +7,7 @@
     width: 16px;
   }
 }
+
+.controls {
+  z-index: 100;
+}

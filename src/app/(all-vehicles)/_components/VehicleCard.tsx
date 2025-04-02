@@ -6,8 +6,11 @@ import Link from "next/link";
 
 export default function VehicleCard({ vehicle }: { vehicle: Vehicle }) {
   return (
-    <Link href={`/all-vehicles/${vehicle.id}`} className="block cursor-pointer rounded-2xl">
-      <VehicleImageCarousel data={vehicle} />
+    <div className="group cursor-pointer rounded-2xl">
+          <div className="relative">
+        <Link href={`/all-vehicles/${vehicle.id}`} className="absolute inset-0 z-10 block" aria-hidden="true" tabIndex={-1} />
+        <VehicleImageCarousel data={vehicle} />
+      </div>
       <div>
         <div >
           <p className="pt-2 header-4 font-bold py-1">{`${vehicle.title} `}</p>
@@ -36,6 +39,6 @@ export default function VehicleCard({ vehicle }: { vehicle: Vehicle }) {
           </p>
         </div>
       </div>
-    </Link>
+    </div>
   )
 }

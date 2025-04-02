@@ -90,7 +90,7 @@ export function useVehicleDropdowns({
   });
   
   const vehicleCondition = useMemo(() => {
-    return vehicleConditionData?.data?.data || [];
+    return vehicleConditionData || [];
   }, [vehicleConditionData]);
 
   // Categories are always loaded as they're the base data
