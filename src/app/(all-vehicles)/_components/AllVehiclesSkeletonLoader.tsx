@@ -28,9 +28,9 @@ export default function AllVehiclesSkeletonLoader({
         <div
           key={index}
           className="w-full sm:col-span-6 lg:col-span-4 space-y-2">
-            <Skeleton width={300} height={200} />
-            <Skeleton width={300} height={60} />
-            <Skeleton width={300} height={40} />
+            <Skeleton width={'100%'} height={200} />
+            <Skeleton width={'100%'} height={60} />
+            <Skeleton width={'100%'} height={40} />
 
         </div>
       ))}
