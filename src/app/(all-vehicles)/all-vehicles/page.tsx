@@ -66,7 +66,7 @@ export default function AllVehiclesPage() {
 
   const handlePerPageChange = (value: string) => {
     setPerPage(value);
-    setCurrentPage(1); // Reset to first page when changing items per page
+    setCurrentPage(1); 
   };
 
   const handleFilterChange = useCallback((filterValues: FilterValues) => {
@@ -88,7 +88,7 @@ export default function AllVehiclesPage() {
       newFilters.instant_bookings = 1;
     }
     
-    // Check if the values are the same as the defaults
+
     const isDefault = 
       filterValues.price_per_day === DEFAULT_FILTER_VALUES.price_per_day && 
       filterValues.rating === DEFAULT_FILTER_VALUES.rating && 
