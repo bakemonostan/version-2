@@ -41,7 +41,7 @@ export default function NavDropdownMenu() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>
-        <div className="flex items-center gap-1 bg-black/10 rounded-full p-1 px-2 cursor-pointer">
+        <div className="flex items-center md:gap-1 bg-black/10 rounded-full p-1 md:px-2  cursor-pointer justify-center">
           <Avatar className="hidden sm:block h-8 w-8">
             <AvatarImage
               className="border-[3px] rounded-full border-brand-yellow-0"
@@ -49,8 +49,8 @@ export default function NavDropdownMenu() {
             />
           </Avatar>
           <span className="hidden sm:block">{user?.details.legal_name}</span>
-          <span>
-            <Menu className="text-black/50 w-5 h-5 mt-1" />
+          <span className="border-2 block">
+            <Menu className="text-black/50 w-5 h-5 md:mt-1" />
           </span>
         </div>
       </DropdownMenuTrigger>

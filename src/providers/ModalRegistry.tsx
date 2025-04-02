@@ -7,6 +7,7 @@ import ListAVehicleAddressModal from "@/app/(list-a-vehicle)/list-a-vehicle/comp
 import VehicleTypeModal from "@/app/(list-a-vehicle)/list-a-vehicle/components/modals/VehicleTypeModal";
 import UnavailabilityPeriods from "@/app/(list-a-vehicle)/list-a-vehicle/components/UnavailabilityPeriods";
 import { PreviewSubmissionModal } from "@/app/(list-a-vehicle)/preview/components/PreviewSubmissionModal";
+import { HeroSearchModal } from "@/app/(landing)/_components/home/HeroSearchModal";
 
 export function ModalRegistry() {
   return (
@@ -18,6 +19,7 @@ export function ModalRegistry() {
       <VehicleTypeModal />
       <UnavailabilityPeriods />
       <PreviewSubmissionModal />
+      <HeroSearchModal />
     </>
   );
 }

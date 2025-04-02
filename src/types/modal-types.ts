@@ -6,7 +6,8 @@ export type AppModalIds =
   | "address-modal"
   | "vehicle-type-modal"
   | "unavailability-modal"
-  | "preview-submission-modal";
+  | "preview-submission-modal"
+  | "hero-search-modal";
 
 export type ModalId = AppModalIds;
 

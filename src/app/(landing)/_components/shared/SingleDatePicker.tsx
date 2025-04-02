@@ -90,7 +90,7 @@ export function SingleDatePicker<T extends FieldValues>({
                     {field.value ? (
                       format(field.value, "PPP")
                     ) : (
-                      <span>{placeholder || "Select date"}</span>
+                      <span className="p-2">{placeholder || "Select date"}</span>
                     )}
                   </div>
                 </Button>
