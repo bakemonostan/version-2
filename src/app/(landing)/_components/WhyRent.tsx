@@ -4,12 +4,12 @@ import { Card, CardSection } from "@mantine/core";
 
 export default function WhyRent() {
   return (
-    <section className="py-[120px]">
+    <section className="py-16 lg:py-[120px] px-3 md:px-0">
       <Shell>
         <div className="grid md:grid-cols-2 gap-8 items-center ">
           <div className="pb-16">
-            <h2 className="heading-3">Why Kaparki?</h2>
-            <h3 className="heading-3">The smart way to rent</h3>
+            <h2 className="heading-3 md:text-left text-center">Why Kaparki?</h2>
+            <h3 className="heading-3 md:text-left text-center">The smart way to rent</h3>
           </div>
         </div>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 items-center ">

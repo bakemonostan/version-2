@@ -8,11 +8,11 @@ import Link from "next/link";
 
 export default function ListToday() {
   return (
-    <section className="py-[92px]">
-      <Shell className="bg-landing-bg rounded-4xl lg:p-16">
+    <section className="py-16 lg:py-[92px] px-3 md:px-0">
+      <Shell className="bg-landing-bg rounded-4xl p-5 md:px-0 lg:p-16">
         <div className="grid md:grid-cols-2 gap-[103px] items-center ">
           <div className=" space-y-6">
-            <h2 className="heading-3">
+            <h2 className="heading-3 md:text-left text-center ">
               Turn Your Vehicle Into Income <br /> - List It Today!
             </h2>
 
@@ -61,7 +61,7 @@ export default function ListToday() {
             </div>
           </div>
 
-          <div className="relative h-[450px] w-[450px] rounded-2xl overflow-hidden">
+          <div className="relative h-[450px] max-w-[450px] rounded-2xl overflow-hidden md:block hidden">
             <Image
               src="/images/car-image-hero.jpg"
               alt="Person with car"

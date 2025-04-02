@@ -200,6 +200,15 @@
   .heading-l {
     @apply text-[1.875rem] leading-[2.4375rem] font-bold;
   }
+  .heading-secondary{
+    @apply text-[1.5rem] leading-[1.5rem];
+  }
+  .body-secondary{
+    @apply text-[0.875rem] leading-[0.875rem];
+  }
+  .body-alt{
+    @apply text-[1rem] leading-[1rem] text-black/80;
+  }
   .heading-hero-1 {
     @apply text-hero-1 leading-hero-1 font-black;
   }
@@ -212,8 +221,11 @@
   .heading-4 {
     @apply text-heading-4 leading-[1.25rem] font-bold;
   }
+  .heading-5 {
+    @apply text-[1.125rem] leading-[1.125rem];
+  }
   .heading-6 {
-    @apply text-[.875rem] leading-0;
+    @apply text-[.875rem] leading-[.875rem];
   }
   .button-text {
     @apply text-button font-semibold leading-button;

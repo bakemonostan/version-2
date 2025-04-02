@@ -4,7 +4,13 @@ import { useState } from "react";
 import { format } from "date-fns";
 import { Calendar } from "@/components/ui/calendar";
 import { Button } from "@/components/ui/button";
-import { FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import {
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
 import {
   Popover,
   PopoverContent,
@@ -12,28 +18,20 @@ import {
 } from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
 import { Control, FieldValues, Path } from "react-hook-form";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 // Global styles for the calendar
 const calendarStyles = {
-  months: "flex flex-col sm:flex-row space-y-4 sm:space-x-4 sm:space-y-0",
-  month: "space-y-4 w-full",
-  caption: "flex justify-center pt-1 relative items-center",
-  caption_label: "text-sm font-medium",
-  nav: "space-x-1 flex items-center",
-  nav_button: "h-7 w-7 bg-transparent p-0 opacity-50 hover:opacity-100",
-  nav_button_previous: "absolute left-1",
-  nav_button_next: "absolute right-1",
-  table: "w-full border-collapse space-y-1",
-  head_row: "flex w-full",
-  head_cell: "text-muted-foreground rounded-md w-9 font-normal text-[0.8rem]",
-  row: "flex w-full mt-2",
-  cell: "relative p-0 text-center text-sm focus-within:relative focus-within:z-20 flex-1",
-  day: "h-9 w-9 p-0 font-normal aria-selected:opacity-100 mx-auto",
-  day_selected: "bg-primary text-primary-foreground hover:bg-primary hover:text-primary-foreground focus:bg-primary focus:text-primary-foreground",
-  day_today: "bg-accent text-accent-foreground",
-  day_outside: "text-muted-foreground opacity-50",
-  day_disabled: "text-muted-foreground opacity-50",
-  day_hidden: "invisible",
+  root: "px-1 py-6 bg-[#FAFAFA] h-[21.875rem] max-w-[23.4375rem] flex  flex-col gap-5 rounded-3xl items-center",
+  months: "relative w-[100%] h-full flex flex-col justify-between",
+  month_grid: "w-[90%]",
+  weekday: "text-[#9B9D9F] text-[14px] capitalize pb-3 font-normal",
+  caption_label: "hidden",
+  month: "w-full text-center mx-auto flex justify-center items-center flex-col",
+  day: "size-10 font-normal aria-selected:opacity-100 m-1 relative z-20 text-[14px] hover:bg-black/10 hover:rounded-full cursor-pointer disabled:cursor-not-allowed",
+  day_button: "size-10 relative z-20 cursor-pointer",
+  outside: "opacity-50 text-black/20 cursor-not-allowed",
+  selected: "bg-yellow-500 text-primary-foreground rounded-full font-medium",
 };
 
 interface SingleDatePickerProps<T extends FieldValues> {
@@ -49,20 +47,25 @@ interface SingleDatePickerProps<T extends FieldValues> {
   showFormMessage?: boolean;
 }
 
-export function SingleDatePicker<T extends FieldValues>({ 
-  control, 
-  name, 
-  label, 
+export function SingleDatePicker<T extends FieldValues>({
+  control,
+  name,
+  label,
   placeholder,
   disabled,
   className,
   buttonClassName,
   calendarClassName,
   popoverContentClassName,
-  showFormMessage = true
+  showFormMessage = true,
 }: SingleDatePickerProps<T>) {
   const [open, setOpen] = useState(false);
-
+  const [month, setMonth] = useState(new Date());
+  const disabledDays = (date: Date) => {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    return date < today;
+  };
   return (
     <FormField
       control={control}
@@ -70,7 +73,9 @@ export function SingleDatePicker<T extends FieldValues>({
       render={({ field }) => (
         <FormItem className={cn("flex flex-col w-full", className)}>
           {label && <FormLabel>{label}</FormLabel>}
-          <Popover open={open} onOpenChange={setOpen}>
+          <Popover
+            open={open}
+            onOpenChange={setOpen}>
             <PopoverTrigger asChild>
               <FormControl>
                 <Button
@@ -80,8 +85,7 @@ export function SingleDatePicker<T extends FieldValues>({
                     "w-full text-left font-normal justify-start p-0",
                     !field.value && "text-muted-foreground",
                     buttonClassName
-                  )}
-                >
+                  )}>
                   <div className="w-full text-left truncate">
                     {field.value ? (
                       format(field.value, "PPP")
@@ -92,9 +96,54 @@ export function SingleDatePicker<T extends FieldValues>({
                 </Button>
               </FormControl>
             </PopoverTrigger>
-            <PopoverContent className={cn("w-auto min-w-[280px] p-0", popoverContentClassName)} align="start">
-              <div className="p-3">
+            <PopoverContent
+              className={cn(
+                "w-auto min-w-[280px] p-0 rounded-3xl",
+                popoverContentClassName
+              )}
+              align="start">
+              <div>
                 <Calendar
+                
+                  showOutsideDays={false}
+                  disabled={disabledDays}
+                  month={month}
+                  onMonthChange={setMonth}
+                  components={{
+                    Nav: () => {
+                      return (
+                        <div className="flex justify-between items-center px-4">
+                          <button
+                            className="nav-button"
+                            onClick={() =>
+                              setMonth(
+                                new Date(
+                                  month.getFullYear(),
+                                  month.getMonth() - 1
+                                )
+                              )
+                            }>
+                            <ChevronLeft />
+                          </button>
+                          <span className="body-2 font-medium text-black/80">
+                            {format(month, "MMMM yyyy")}
+                          </span>
+                          <button
+                            className="nav-button"
+                            onClick={() =>
+                              setMonth(
+                                new Date(
+                                  month.getFullYear(),
+                                  month.getMonth() + 1
+                                )
+                              )
+                            }>
+                            <ChevronRight />
+                          </button>
+                        </div>
+                      );
+                    },
+                  }}
                   mode="single"
                   selected={field.value}
                   onSelect={(date) => {
@@ -113,4 +162,4 @@ export function SingleDatePicker<T extends FieldValues>({
       )}
     />
   );
-} 
+}

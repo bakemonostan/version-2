@@ -6,6 +6,7 @@ import { ImageIcon, XCircleIcon } from "lucide-react";
 import Image from "next/image";
 import Dropzone from "react-dropzone";
 import { useEffect, useState } from "react";
+import { compressImage } from "@/utils/general";
 
 interface MultiImageUploadProps {
   images: string[];
@@ -17,39 +18,35 @@ interface MultiImageUploadProps {
 export function MultiImageUpload({ images, onChange, index, label }: MultiImageUploadProps) {
   const [error, setError] = useState<string | null>(null);
 
-  // Convert file to base64 string
-  const fileToBase64 = (file: File): Promise<string> => {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = () => resolve(reader.result as string);
-      reader.onerror = (error) => reject(error);
-    });
-  };
-
   const handleImageUpload = async (acceptedFiles: File[]) => {
     const file = acceptedFiles[0];
-    setError(null);
+    if (!file) return;
     
-    if (file) {
-      // Check file size (1MB = 1048576 bytes)
-      if (file.size > 1048576) {
-        setError("Image size must be less than 1MB");
-        return;
-      }
-      
-      try {
-        const base64String = await fileToBase64(file);
+    if (file.size > 1024 * 1024) {
+      setError("Image size must be less than 1MB");
+      return;
+    }
+    
+    try {
+      const reader = new FileReader();
+      reader.onload = async (e) => {
+        const base64String = e.target?.result as string;
+        
+        // Compress the image before storing
+        const compressedImage = await compressImage(base64String);
+        
+        // Update the images array with the compressed image
         const newImages = [...images];
-        newImages[index] = base64String;
+        newImages[index] = compressedImage;
         onChange(newImages);
-      } catch (error) {
-        console.error("Error converting file to base64:", error);
-        setError("Error uploading image");
-      }
+        setError(null);
+      };
+      reader.readAsDataURL(file);
+    } catch (error) {
+      console.error("Error converting file to base64:", error);
+      setError("Failed to process image");
     }
   };
-
   const handleRemove = () => {
     setError(null);
     const newImages = [...images];

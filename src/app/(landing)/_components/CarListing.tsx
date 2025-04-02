@@ -32,7 +32,7 @@ export default function CarListing() {
       {route !== "/how-kaparki-works" && (
         <Separator className="hidden lg:block  container mx-auto bg-black/10" />
       )}
-      <div className="py-8 lg:py-[5.75rem]">
+      <div className="py-8 lg:py-[5.75rem] px-3 md:px-0">
         <div className="relative grid gap-[10rem] mx-auto lg:grid-cols-2 pb-8">
           <div>
             <h3 className="text-2xl font-bold heading-3 pb-4">
@@ -45,7 +45,7 @@ export default function CarListing() {
           </div>
         </div>
         <div className="mx-auto space-y-2">
-          <div className="flex gap-2 overflow-scroll overflow-y-hidden">
+          <div className="flex flex-wrap gap-2 overflow-scroll overflow-y-hidden">
             {isLoading
               ? Array.from({ length: 6 }).map((_, index) => (
                   <Skeleton

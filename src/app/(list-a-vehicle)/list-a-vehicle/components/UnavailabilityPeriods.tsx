@@ -5,7 +5,7 @@ import { useModal } from "@/providers/ModalContext";
 import { Button } from "@/components/ui/button";
 import { useVehicleListingStore } from "../vehicleListingstore";
 import { format } from "date-fns";
-import { CalendarIcon } from "lucide-react";
+import {  ChevronLeft, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Calendar } from "@/components/ui/calendar";
 import {
@@ -26,20 +26,19 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { useState } from "react";
 
-// Custom styles for the calendar
 const calendarStyles = {
-  calendar: "p-3",
-  caption: "flex justify-center pt-2 relative items-center mb-4",
-  day: "h-8 w-8 p-0 font-normal bg-transparent hover:bg-black/5 focus:bg-black/5",
-  day_selected: "!bg-primary !text-primary-foreground hover:!bg-primary/90 focus:!bg-primary/90",
-  day_today: "!bg-transparent border border-primary/30 font-semibold",
-  day_outside: "text-muted-foreground opacity-50 bg-transparent",
-  day_disabled: "text-muted-foreground opacity-30 bg-transparent",
-  table: "w-full border-collapse",
-  head_cell: "text-muted-foreground rounded-md w-8 font-normal text-[0.8rem] bg-transparent",
-  cell: "relative p-0 text-center text-sm bg-transparent",
-  months: "flex flex-col sm:flex-row space-y-4 sm:space-x-4 sm:space-y-0",
-}
+  root: "px-1 py-6 bg-[#FAFAFA] h-[21.875rem] max-w-[23.4375rem] flex  flex-col gap-5 rounded-3xl items-center" ,
+  months: "relative w-[100%] h-full flex flex-col justify-between",
+  month_grid: "w-[90%]",
+  weekday: "text-[#9B9D9F] text-[14px] capitalize pb-3 font-normal",
+  caption_label: "hidden",
+  selected: " border-[#F8C421] ",
+  month:
+    "w-full text-center mx-auto flex justify-center items-center flex-col",
+  day: "size-10 font-normal aria-selected:opacity-100 m-1 relative z-20 text-[14px] hover:bg-black/10 hover:rounded-full",
+  day_button: "size-10 relative z-20",
+  outside: "opacity-50 text-black/20",
+};
 
 const UnavailabilityFormSchema = z.object({
   from: z.date({
@@ -63,6 +62,7 @@ export default function UnavailabilityPeriods() {
   const store = useVehicleListingStore();
   const [fromPopoverOpen, setFromPopoverOpen] = useState(false);
   const [toPopoverOpen, setToPopoverOpen] = useState(false);
+  const [month, setMonth] = useState(new Date());
 
   const form = useForm<FormValues>({
     resolver: zodResolver(UnavailabilityFormSchema),
@@ -73,8 +73,7 @@ export default function UnavailabilityPeriods() {
   });
 
   const onSubmit = (data: FormValues) => {
-    const formValues = store.formFourValue || {};
-    const blockedPeriods = formValues.blocked_period || [];
+    const blockedPeriods = store.formFourValue?.blocked_period || [];
     
     const newPeriod = {
       from: format(data.from, 'yyyy/MM/dd'),
@@ -82,7 +81,6 @@ export default function UnavailabilityPeriods() {
     };
     
     store.setFormFourValue({
-      ...formValues,
       blocked_period: [...blockedPeriods, newPeriod],
     });
     
@@ -102,7 +100,7 @@ export default function UnavailabilityPeriods() {
             name="from"
             render={({ field }) => (
               <FormItem className="flex flex-col">
-                <FormLabel>From</FormLabel>
+                <FormLabel className="text-black/80">From</FormLabel>
                 <Popover open={fromPopoverOpen} onOpenChange={setFromPopoverOpen}>
                   <PopoverTrigger asChild>
                     <FormControl>
@@ -114,17 +112,42 @@ export default function UnavailabilityPeriods() {
                         )}
                       >
                         {field.value ? (
-                          format(field.value, "PPP")
+                          <span className="text-black/80 w-full">{format(field.value, "PPP")}</span>
                         ) : (
-                          <span>Pick a start date</span>
+                          <span className="text-black/80 w-full">Pick a start date</span>
                         )}
-                        <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
                       </Button>
                     </FormControl>
                   </PopoverTrigger>
-                  <PopoverContent className="w-auto p-0" align="start">
+                  <PopoverContent className="w-auto p-0">
                     <div className="custom-calendar-wrapper">
                       <Calendar
+                              onMonthChange={setMonth}
+                              components={{
+                                Nav: () => {
+                                  return (
+                                    <div className="flex justify-between items-center px-4">
+                                      <button
+                                        className="nav-button"
+                                        onClick={() =>
+                                          setMonth(new Date(month.getFullYear(), month.getMonth() - 1))
+                                        }>
+                                        <ChevronLeft />
+                                      </button>
+                                      <span className="body-2 font-medium text-black/80">
+                                        {format(month, "MMMM yyyy")}
+                                      </span>
+                                      <button
+                                        className="nav-button"
+                                        onClick={() =>
+                                          setMonth(new Date(month.getFullYear(), month.getMonth() + 1))
+                                        }>
+                                        <ChevronRight />
+                                      </button>
+                                    </div>
+                                  );
+                                },
+                              }}
                         mode="single"
                         selected={field.value}
                         onSelect={(date) => {
@@ -163,15 +186,40 @@ export default function UnavailabilityPeriods() {
                         {field.value ? (
                           format(field.value, "PPP")
                         ) : (
-                          <span>Pick an end date</span>
+                          <span className="text-black/80 w-full">Pick an end date</span>
                         )}
-                        <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
                       </Button>
                     </FormControl>
                   </PopoverTrigger>
                   <PopoverContent className="w-auto p-0" align="start">
                     <div className="custom-calendar-wrapper">
                       <Calendar
+                        onMonthChange={setMonth}
+                        components={{
+                          Nav: () => {
+                            return (
+                              <div className="flex justify-between items-center px-4">
+                                <button
+                                  className="nav-button"
+                                  onClick={() =>
+                                    setMonth(new Date(month.getFullYear(), month.getMonth() - 1))
+                                  }>
+                                  <ChevronLeft />
+                                </button>
+                                <span className="body-2 font-medium text-black/80">
+                                  {format(month, "MMMM yyyy")}
+                                </span>
+                                <button
+                                  className="nav-button"
+                                  onClick={() =>
+                                    setMonth(new Date(month.getFullYear(), month.getMonth() + 1))
+                                  }>
+                                  <ChevronRight />
+                                </button>
+                              </div>
+                            );
+                          },
+                        }}
                         mode="single"
                         selected={field.value}
                         onSelect={(date) => {
