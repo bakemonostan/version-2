@@ -11,15 +11,15 @@ interface HostedByCardProps {
 
 export default function HostedByCard({ data }: HostedByCardProps) {
   return (
-    <div className="">
+    <div className="py-5">
       <Card className="sticky top-24">
         <CardHeader className="px-3">
           <p className="font-bold text-center">Hosted by</p>
           <div className="flex items-center gap-2">
-            <Avatar className="size-12">
+            <Avatar className="size-[4.5rem]">
               <AvatarImage
                 src={
-                  data?.host_by?.profile_picture ||
+                  data?.host?.profile_picture ||
                   "https://picsum.photos/200/300"
                 }
                 alt="Host"
@@ -27,8 +27,8 @@ export default function HostedByCard({ data }: HostedByCardProps) {
               <AvatarFallback>HB</AvatarFallback>
             </Avatar>
             <p className="flex flex-col text-black/70">
-              <span className="font-bold">{data?.host_by?.name}</span>
-              <span className="text-xs">{data?.host_by?.joined}</span>
+              <span className="font-bold">{data?.host?.name}</span>
+              <span className="text-xs">{data?.host?.joined}</span>
             </p>
           </div>
         </CardHeader>

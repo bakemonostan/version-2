@@ -6,11 +6,11 @@ import { Button } from "@/components/ui/button";
 export default function DashboardNavbar() {
   return (
     <header className="sticky top-0 border-b border-gray-200 bg-white z-50 opacity-90">
-      <nav className="flex-col md:flex-row flex-between mx-auto lg:max-w-[90rem] p-5">
+      <nav className="flex-row flex-between mx-auto lg:max-w-[90rem] p-5">
         <Link href="/">
           <LogoIcon />
         </Link>
-        <div>
+        <div className="hidden md:block">
           <Button
             variant="outline"
             className="h-10 rounded-full border-black/80 active:bg-black/10 active:translate-y-1 transition-all active:duration-300">

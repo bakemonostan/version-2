@@ -9,6 +9,8 @@ import UnavailabilityPeriods from "@/app/(list-a-vehicle)/list-a-vehicle/compone
 import { PreviewSubmissionModal } from "@/app/(list-a-vehicle)/preview/components/PreviewSubmissionModal";
 import { HeroSearchModal } from "@/app/(landing)/_components/home/HeroSearchModal";
 import AllVehiclesFilterModal from "@/app/(all-vehicles)/_components/AllVehiclesFilterModal";
+import DatesModalComponent from "@/app/(all-vehicles)/all-vehicles/[id]/components/DatesModalComponent";
+import BookingCompleteModal from "@/app/(all-vehicles)/all-vehicles/[id]/components/BookingCompleteModal";
 
 export function ModalRegistry() {
   return (
@@ -22,6 +24,8 @@ export function ModalRegistry() {
       <PreviewSubmissionModal />
       <HeroSearchModal />
       <AllVehiclesFilterModal />
+      <DatesModalComponent />
+      <BookingCompleteModal />
     </>
   );
 }

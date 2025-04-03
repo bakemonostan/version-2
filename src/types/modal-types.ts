@@ -8,7 +8,9 @@ export type AppModalIds =
   | "unavailability-modal"
   | "preview-submission-modal"
   | "hero-search-modal"
-  | "vehicles-filter-modal";
+  | "vehicles-filter-modal"
+  | "dates-modal"
+  | "booking-complete-modal";
 
 export type ModalId = AppModalIds;
 
@@ -32,6 +34,18 @@ export interface PreviewSubmissionModalParams {
   title: string;
 }
 
+export interface DatesModalParams {
+  unavailability?: Array<{ from: string; to: string }>;
+  minDays?: number;
+  maxDays?: number;
+  advanceNotice?: number;
+}
+
+export interface BookingCompleteModalParams {
+  booking_id?: string;
+  image?: string;
+}
+
 // Map each modal ID to its parameter type
 export interface ModalParamsMap {
   // Modals with specific params
@@ -39,6 +53,8 @@ export interface ModalParamsMap {
   "edit-bio": EditBioModalParams;
   "edit-details": EditDetailsModalParams;
   "preview-submission-modal": PreviewSubmissionModalParams;
+  "dates-modal": DatesModalParams;
+  "booking-complete-modal": BookingCompleteModalParams;
   
   // Modals without specific params default to empty object
   "address-modal": DefaultParams;

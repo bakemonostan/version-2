@@ -6,12 +6,11 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Menu, ToggleRight } from "lucide-react";
+import { Menu, ToggleRight, LogIn } from "lucide-react";
 import Link from "next/link";
 import { DropdownMenuItems, DropdownMenuItemsTwo } from "@/types/menu";
 import { Button } from "@/components/ui/button";
 import { useUserStore } from "@/store/userStore";
-import { Skeleton } from "@mantine/core";
 import { deleteCookie } from "cookies-next/client";
 import { useRouter } from "next/navigation";
 
@@ -19,12 +18,18 @@ export default function NavDropdownMenu() {
   const { user, setUser } = useUserStore();
   const menuItems = user ? DropdownMenuItems : DropdownMenuItemsTwo;
   const router = useRouter();
+  
   if (!user) {
     return (
-      <div className="flex items-center gap-3 bg-black/10 rounded-full w-44 h-12 cursor-pointer">
-        <Skeleton className="w-8 h-8 rounded-full" />
-        <Skeleton className="w-24 h-4 rounded-full" />
-      </div>
+      <Link href="/auth">
+        <Button 
+          variant="outline" 
+          className="flex items-center gap-2 rounded-full h-12 border-black/50 hover:bg-black/5"
+        >
+          <LogIn className="w-4 h-4" />
+          <span>Login</span>
+        </Button>
+      </Link>
     );
   }
 

@@ -137,7 +137,7 @@ export default function CollapsibleSection({data}: {data: Vehicle}) {
 
     {/* features */}
     <div className="py-4 border-b border-black/10">
-      <div className="flex items-center justify-between gap-2 pb-4">
+      <div className="flex items-center justify-between gap-2 pb-6">
         <p className="font-bold uppercase heading-5">Features</p>
         <p onClick={toggleFeatures}>
           <PlusSquare className="size-4" />
@@ -185,7 +185,7 @@ export default function CollapsibleSection({data}: {data: Vehicle}) {
 
     {/* safety */}
     <div className="py-4 border-b border-black/10">
-      <div className="flex items-center justify-between gap-2 pb-4">
+      <div className="flex items-center justify-between gap-2 pb-6">
         <p className="font-bold uppercase heading-5">Safety</p>
         <p onClick={toggleSafety}>
           <PlusSquare className="size-4" />
@@ -221,7 +221,7 @@ export default function CollapsibleSection({data}: {data: Vehicle}) {
 
     {/* reviews */}
     <div className="py-4">
-      <div className="flex items-center justify-between gap-2 pb-4">
+      <div className="flex items-center justify-between gap-2 pb-6">
         <p className="font-bold uppercase heading-5">Reviews</p>
         <p onClick={toggleReviews}>
           <PlusSquare className="size-4" />

@@ -12,6 +12,7 @@ import ListingsIcon from "./ListingsIcon";
 import NotificationsIcon from "./NotificationsIcon";
 import OverviewIcon from "./OverviewIcon";
 import PartyHornIcon from "./PartyHornIcon";
+import GradientArrowIcon from "./GradientArrowIcon";
 import LogoIcon from "./LogoIcon";
 import RequestsIcon from "./RequestsIcon";
 import RocketShipIcon from "./RocketShipIcon";
@@ -54,6 +55,7 @@ export {
   CancellationIcon,
   ChatBubbleIcon,
   CarIcon,
+  GradientArrowIcon,
   BookIcon,
   ConvenienceClockIcon,
   DowntimeIcon,

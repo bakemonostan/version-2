@@ -30,7 +30,7 @@ export default function DashboardShell({
       </div>
       <div
         className={cn(
-          "w-full col-span-4 sticky top-24 h-fit max-h-[calc(100vh-6rem)] overflow-y-auto",
+          "w-full hidden sm:block col-span-4 sticky top-24 h-fit max-h-[calc(100vh-6rem)] overflow-y-auto",
           isBookingDetailsPage ? "col-span-3" : "col-span-4"
         )}>
         {card}

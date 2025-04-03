@@ -153,6 +153,11 @@ export interface Vehicle {
   description: string
   status: 'active' | 'pending' | 'paused' | 'not approved'
   year: string
+  host?: {
+    joined: string
+    name: string
+    profile_picture: string
+  }
   host_by?: {
     joined: string
     name: string
