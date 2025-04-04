@@ -21,13 +21,10 @@ export default function VehicleImageCarousel({ data, withControls = true, withIn
       <Carousel
         withControls={withControls}
         draggable
+        loop
         slideGap={'sm'}
         withIndicators={withIndicators}  
-        classNames={{
-          ...classes,
-          controls: classes.controls,
-          indicators: classes.indicators
-        }}
+        classNames={classes}
       >
         {images.map((img) => (
           <CarouselSlide key={img.id}>
