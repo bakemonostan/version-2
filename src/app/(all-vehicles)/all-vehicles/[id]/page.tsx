@@ -16,6 +16,8 @@ import VehicleSpecificationsAndDetails from "./components/VehicleSpecificationsA
 import { useModal } from "@/providers/ModalContext";
 import ReviewBookingRequest from "./components/ReviewBookingRequest";
 import { useBookingStore } from "@/store/bookingStore";
+import ErrorState from "@/app/(dashboard)/dashboard/_components/ErrorState";
+import VehicleDetailsSkeleton from "./components/VehicleDetailsSkeleton";
 
 interface VehicleDetailsPageProps {
   params: Promise<{
@@ -30,26 +32,35 @@ export default function VehicleDetailsPage({
   const { id } = use(params);
   const { openModal } = useModal();
   const { finalPage, setFinalPage } = useBookingStore();
-  
-  const { data } = useCustomQuery(["Single vehicle listing", id], () =>
-    getSingleVehicleListing(id)
+
+  const { data, isError, isLoading } = useCustomQuery(
+    ["Single vehicle listing", id],
+    () => getSingleVehicleListing(id)
   );
 
   const handleOpenDateModal = () => {
     if (!data) return;
-    
+
     openModal("dates-modal", {
       unavailability: data.unavailability,
       minDays: data.rental_rate.min_trip_duration,
       maxDays: data.rental_rate.max_trip_duration,
-      advanceNotice: data.rental_rate.advance_notice
+      advanceNotice: data.rental_rate.advance_notice,
     });
   };
 
   const handleBookingReview = () => {
     setFinalPage(true);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
+
+  if (isError) {
+    return <ErrorState message="Error loading vehicle details" />;
+  }
+
+  if (isLoading) {
+    return <VehicleDetailsSkeleton />;
+  }
 
   if (finalPage) {
     return <ReviewBookingRequest id={id} />;
@@ -156,17 +167,19 @@ export default function VehicleDetailsPage({
           {/* HIDE ON MOBILE */}
           <div className="hidden md:block">
             {data && <VehicleSpecificationsAndDetails data={data} />}
-          </div>  
+          </div>
         </div>
 
         {/* Right sidebar - sticky on desktop */}
         <div className="hidden md:block md:col-span-5 h-fit sticky top-24">
           {data && <HostedByCard data={data} />}
-          {data && <RentalSummaryCard 
-            data={data} 
-            onOpenDateModal={handleOpenDateModal} 
-            onBookingReview={handleBookingReview}
-          />}
+          {data && (
+            <RentalSummaryCard
+              data={data}
+              onOpenDateModal={handleOpenDateModal}
+              onBookingReview={handleBookingReview}
+            />
+          )}
         </div>
       </div>
 
@@ -179,9 +192,9 @@ export default function VehicleDetailsPage({
       )}
       {data && (
         <div className="block md:hidden">
-          <RentalSummaryCard 
-            data={data} 
-            onOpenDateModal={handleOpenDateModal} 
+          <RentalSummaryCard
+            data={data}
+            onOpenDateModal={handleOpenDateModal}
             onBookingReview={handleBookingReview}
           />
         </div>
