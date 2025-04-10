@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import "./globals.css";
 import "@mantine/core/styles.css";
 import "@mantine/dates/styles.css";
 import "@mantine/carousel/styles.css";
@@ -12,6 +11,7 @@ import { CircleCheck, InfoIcon, CircleAlert, CircleX } from "lucide-react";
 import { ModalProvider } from "@/providers/ModalContext";
 import { ModalRegistry } from "@/providers/ModalRegistry";
 import { GoogleOAuthProvider } from "@react-oauth/google";
+import "./globals.css";
 // import { ActivityTracker } from "./(all-vehicles)/all-vehicles/[id]/components/ActivityTracker";
 const outfit = Outfit({
   subsets: ["latin"],
@@ -35,7 +35,8 @@ export default function RootLayout({
       lang="en"
       {...mantineHtmlProps}>
       <body className={`${outfit.variable} antialiased`}>
-        <GoogleOAuthProvider clientId={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID!}>
+        <GoogleOAuthProvider
+          clientId={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID!}>
           <MantaineProvider>
             <QueryProvider>
               <ModalProvider>
